@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFD600;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e6c200;
+}
+
+/* Smooth transitions for language switching */
+* {
+  transition: font-family 0.3s ease;
+}
+
+/* Custom focus styles */
+input:focus, textarea:focus {
+  box-shadow: 0 0 0 3px rgba(255, 214, 0, 0.1);
+}
+
+/* RTL specific adjustments */
+[dir="rtl"] .space-x-4 > * + * {
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .space-x-6 > * + * {
+  margin-right: 1.5rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .space-x-8 > * + * {
+  margin-right: 2rem;
+  margin-left: 0;
+}
+
+/* Animation for the brain icon */
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Custom button hover effects */
+.btn-primary {
+  @apply bg-bina-yellow text-bina-black px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-yellow-400 transform scale-105 shadow-lg;
+}
+
+/* Service card hover effects */
+.service-card {
+  @apply transition-all duration-300;
+}
+
+.service-card:hover {
+  @apply transform -translate-y-2 shadow-xl;
+}
+
+/* FAQ accordion animations */
+.faq-content {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Responsive text adjustments */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+}
+
+/* Loading animation */
+.loading {
+  @apply animate-pulse;
+}
+
+/* Custom gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+.gradient-yellow {
+  background: linear-gradient(135deg, #FFD600 0%, #e6c200 100%);
+} 
