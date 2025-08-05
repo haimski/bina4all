@@ -16,15 +16,15 @@
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script type="module" src="/src/main.js"></script>
 </head>
-<body class="bg-bina-black text-bina-white font-hebrew" :class="language === 'en' ? 'font-english' : 'font-hebrew'">
+<body class="bg-bina-white text-bina-dark-gray font-hebrew" :class="language === 'en' ? 'font-english' : 'font-hebrew'">
     
     <!-- Header -->
-    <header class="fixed top-0 w-full bg-bina-black/95 backdrop-blur-sm z-50 border-b border-bina-yellow/20">
+    <header class="fixed top-0 w-full bg-bina-white/95 backdrop-blur-sm z-50 border-b border-bina-light-gray shadow-sm">
         <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
             <!-- Logo -->
             <div class="flex items-center space-x-4 rtl:space-x-reverse">
                 <!-- Brain Logo SVG -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-bina-yellow brain-logo-small">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-bina-light-blue brain-logo-small">
                     <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
                     <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
                     <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
@@ -35,7 +35,7 @@
                     <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
                     <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
                 </svg>
-                <div class="text-2xl font-bold text-bina-yellow">
+                <div class="text-2xl font-bold text-bina-deep-blue">
                     <span x-show="language === 'he'">בינה לכל</span>
                     <span x-show="language === 'en'">Bina4All</span>
                 </div>
@@ -43,23 +43,23 @@
             
             <!-- Navigation Menu -->
             <div class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-                <a href="#about" class="hover:text-bina-yellow transition-colors" x-text="language === 'he' ? 'אודות' : 'About'"></a>
-                <a href="#services" class="hover:text-bina-yellow transition-colors" x-text="language === 'he' ? 'שירותים' : 'Services'"></a>
-                <a href="#faq" class="hover:text-bina-yellow transition-colors" x-text="language === 'he' ? 'שאלות ותשובות' : 'FAQ'"></a>
-                <a href="#contact" class="hover:text-bina-yellow transition-colors" x-text="language === 'he' ? 'יצירת קשר' : 'Contact'"></a>
+                <a href="#about" class="text-bina-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'אודות' : 'About'"></a>
+                <a href="#services" class="text-bina-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'שירותים' : 'Services'"></a>
+                <a href="#faq" class="text-bina-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'שאלות ותשובות' : 'FAQ'"></a>
+                <a href="#contact" class="text-bina-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'יצירת קשר' : 'Contact'"></a>
             </div>
             
             <!-- Language Toggle & CTA -->
             <div class="flex items-center space-x-4 rtl:space-x-reverse">
                 <!-- Language Toggle -->
                 <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                    <button @click="language = 'he'" :class="language === 'he' ? 'text-bina-yellow' : 'text-gray-400'" class="hover:text-bina-yellow transition-colors">עברית</button>
-                    <span class="text-gray-600">|</span>
-                    <button @click="language = 'en'" :class="language === 'en' ? 'text-bina-yellow' : 'text-gray-400'" class="hover:text-bina-yellow transition-colors">English</button>
+                    <button @click="language = 'he'" :class="language === 'he' ? 'text-bina-light-blue' : 'text-bina-gray'" class="hover:text-bina-light-blue transition-colors">עברית</button>
+                    <span class="text-bina-gray">|</span>
+                    <button @click="language = 'en'" :class="language === 'en' ? 'text-bina-light-blue' : 'text-bina-gray'" class="hover:text-bina-light-blue transition-colors">English</button>
                 </div>
                 
                 <!-- CTA Button -->
-                <a href="#contact" class="bg-bina-yellow text-bina-black px-6 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors" x-text="language === 'he' ? 'הצטרפו עכשיו' : 'Join Now'"></a>
+                <a href="#contact" class="bg-bina-light-blue text-bina-white px-6 py-2 rounded-lg font-semibold hover:bg-bina-deep-blue transition-colors shadow-sm" x-text="language === 'he' ? 'הצטרפו עכשיו' : 'Join Now'"></a>
             </div>
         </nav>
     </header>
@@ -67,50 +67,50 @@
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
         <!-- Dynamic Background Elements -->
-        <div class="absolute inset-0 opacity-30">
+        <div class="absolute inset-0 opacity-10">
             <!-- Tech Grid Pattern -->
             <svg class="w-full h-full absolute" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <pattern id="tech-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#FFD600" stroke-width="0.5"/>
-                        <circle cx="30" cy="30" r="1.5" fill="#FFD600" opacity="0.4"/>
+                        <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#3B82F6" stroke-width="0.5"/>
+                        <circle cx="30" cy="30" r="1.5" fill="#3B82F6" opacity="0.4"/>
                     </pattern>
                     <pattern id="connection-lines" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
                         <rect width="120" height="120" fill="url(#tech-grid)"/>
-                        <path d="M 20 20 L 100 20 M 20 100 L 100 100 M 20 20 L 20 100 M 100 20 L 100 100" stroke="#FFD600" stroke-width="0.3" opacity="0.2"/>
-                        <circle cx="60" cy="60" r="20" fill="none" stroke="#FFD600" stroke-width="0.3" opacity="0.3"/>
+                        <path d="M 20 20 L 100 20 M 20 100 L 100 100 M 20 20 L 20 100 M 100 20 L 100 100" stroke="#3B82F6" stroke-width="0.3" opacity="0.2"/>
+                        <circle cx="60" cy="60" r="20" fill="none" stroke="#3B82F6" stroke-width="0.3" opacity="0.3"/>
                     </pattern>
                 </defs>
                 <rect width="100%" height="100%" fill="url(#connection-lines)"/>
             </svg>
             
             <!-- Floating Tech Nodes -->
-            <div class="absolute top-20 left-10 w-4 h-4 bg-bina-yellow rounded-full opacity-40 animate-float-slow"></div>
-            <div class="absolute top-40 right-20 w-3 h-3 bg-bina-yellow rounded-full opacity-30 animate-float-medium"></div>
-            <div class="absolute bottom-40 left-1/4 w-2 h-2 bg-bina-yellow rounded-full opacity-50 animate-float-fast"></div>
-            <div class="absolute top-1/2 right-1/3 w-3 h-3 bg-bina-yellow rounded-full opacity-35 animate-float-slow"></div>
+            <div class="absolute top-20 left-10 w-4 h-4 bg-bina-light-blue rounded-full opacity-20 animate-float-slow"></div>
+            <div class="absolute top-40 right-20 w-3 h-3 bg-bina-light-blue rounded-full opacity-15 animate-float-medium"></div>
+            <div class="absolute bottom-40 left-1/4 w-2 h-2 bg-bina-light-blue rounded-full opacity-25 animate-float-fast"></div>
+            <div class="absolute top-1/2 right-1/3 w-3 h-3 bg-bina-light-blue rounded-full opacity-18 animate-float-slow"></div>
             
             <!-- Tech Lines -->
-            <div class="absolute top-32 left-16 w-20 h-0.5 bg-gradient-to-r from-transparent via-bina-yellow to-transparent opacity-30"></div>
-            <div class="absolute bottom-32 right-16 w-16 h-0.5 bg-gradient-to-r from-transparent via-bina-yellow to-transparent opacity-25"></div>
-            <div class="absolute top-1/3 right-1/4 w-12 h-0.5 bg-gradient-to-r from-transparent via-bina-yellow to-transparent opacity-20 transform rotate-45"></div>
+            <div class="absolute top-32 left-16 w-20 h-0.5 bg-gradient-to-r from-transparent via-bina-light-blue to-transparent opacity-15"></div>
+            <div class="absolute bottom-32 right-16 w-16 h-0.5 bg-gradient-to-r from-transparent via-bina-light-blue to-transparent opacity-12"></div>
+            <div class="absolute top-1/3 right-1/4 w-12 h-0.5 bg-gradient-to-r from-transparent via-bina-light-blue to-transparent opacity-10 transform rotate-45"></div>
         </div>
         
         <div class="container mx-auto px-4 text-center relative z-10">
             <div class="max-w-4xl mx-auto">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-wide leading-tight parallax-title" data-parallax="0.1">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-bina-dark-gray tracking-wide leading-tight parallax-title" data-parallax="0.1">
                     <span x-show="language === 'he'">
-                        <span class="text-bina-yellow">הבינה המלאכותית</span> כבר כאן והיא בשביל כולם
+                        <span class="text-bina-light-blue">הבינה המלאכותית</span> כבר כאן והיא בשביל כולם
                     </span>
                     <span x-show="language === 'en'">
-                        <span class="text-bina-yellow">Artificial Intelligence</span> is Here and It's for Everyone
+                        <span class="text-bina-light-blue">Artificial Intelligence</span> is Here and It's for Everyone
                     </span>
                 </h1>
                 
                 <!-- Decorative line under title -->
-                <div class="w-16 h-1 bg-bina-yellow mt-8 mb-8 mx-auto"></div>
+                <div class="w-16 h-1 bg-bina-light-blue mt-8 mb-8 mx-auto"></div>
                 
-                <p class="text-xl md:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto parallax-subtitle" data-parallax="0.05">
+                <p class="text-xl md:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto parallax-subtitle text-bina-gray" data-parallax="0.05">
                     <span x-show="language === 'he'">
                         מתמחה בהטמעת פתרונות בינה מלאכותית מתקדמים לעסקים, חינוך, יצירת תוכן ועוד. הופך טכנולוגיות מורכבות לכלים פשוטים ויעילים שמניעים צמיחה ויצירתיות.
                     </span>
@@ -120,42 +120,42 @@
                     </span>
                 </p>
                 
-                <a href="#about" class="bg-bina-yellow text-bina-black px-8 py-4 rounded-lg text-xl font-bold hover:bg-yellow-400 transition-all duration-700 ease-in-out transform hover:scale-105 shadow-lg inline-block parallax-button" data-parallax="0.02" x-text="language === 'he' ? 'ללמוד עוד' : 'Learn More'"></a>
+                <a href="#about" class="bg-bina-light-blue text-bina-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-bina-deep-blue transition-all duration-700 ease-in-out transform hover:scale-105 shadow-md inline-block parallax-button" data-parallax="0.02" x-text="language === 'he' ? 'ללמוד עוד' : 'Learn More'"></a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-900 relative overflow-hidden">
+    <section id="about" class="py-20 bg-bina-light-gray relative overflow-hidden">
         <!-- Background Tech Elements -->
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute top-10 left-10 w-6 h-6 border border-bina-yellow rounded-full animate-pulse-slow"></div>
-            <div class="absolute bottom-20 right-10 w-4 h-4 border border-bina-yellow rounded-full animate-pulse-medium"></div>
-            <div class="absolute top-1/2 left-1/4 w-3 h-3 border border-bina-yellow rounded-full animate-pulse-fast"></div>
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-6 h-6 border border-bina-light-blue rounded-full animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-4 h-4 border border-bina-light-blue rounded-full animate-pulse-medium"></div>
+            <div class="absolute top-1/2 left-1/4 w-3 h-3 border border-bina-light-blue rounded-full animate-pulse-fast"></div>
             
             <!-- Diagonal Lines -->
-            <div class="absolute top-20 right-1/3 w-16 h-0.5 bg-gradient-to-r from-transparent via-bina-yellow to-transparent opacity-30 transform rotate-45"></div>
-            <div class="absolute bottom-40 left-1/3 w-12 h-0.5 bg-gradient-to-r from-transparent via-bina-yellow to-transparent opacity-25 transform -rotate-45"></div>
+            <div class="absolute top-20 right-1/3 w-16 h-0.5 bg-gradient-to-r from-transparent via-bina-light-blue to-transparent opacity-15 transform rotate-45"></div>
+            <div class="absolute bottom-40 left-1/3 w-12 h-0.5 bg-gradient-to-r from-transparent via-bina-light-blue to-transparent opacity-12 transform -rotate-45"></div>
         </div>
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="max-w-6xl mx-auto">
-                <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 text-bina-yellow uppercase tracking-wider parallax-title" data-parallax="0.08">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 text-bina-light-blue uppercase tracking-wider parallax-title" data-parallax="0.08">
                     <span x-show="language === 'he'">מי אני?</span>
                     <span x-show="language === 'en'">Who Am I?</span>
                 </h2>
                 
                 <!-- Decorative elements -->
                 <div class="flex items-center justify-center mb-12">
-                    <div class="w-8 h-0.5 bg-bina-yellow"></div>
-                    <div class="w-3 h-3 bg-bina-yellow rounded-full mx-4"></div>
-                    <div class="w-8 h-0.5 bg-bina-yellow"></div>
+                    <div class="w-8 h-0.5 bg-bina-light-blue"></div>
+                    <div class="w-3 h-3 bg-bina-light-blue rounded-full mx-4"></div>
+                    <div class="w-8 h-0.5 bg-bina-light-blue"></div>
                 </div>
                 
                 <div class="text-center max-w-4xl mx-auto mb-12">
-                    <div class="w-32 h-32 mx-auto bg-gradient-to-br from-bina-yellow to-yellow-400 rounded-full flex items-center justify-center animate-pulse-glow parallax-element mb-8" data-parallax="0.1">
+                    <div class="w-32 h-32 mx-auto bg-gradient-to-br from-bina-light-blue to-blue-400 rounded-full flex items-center justify-center animate-pulse-glow parallax-element mb-8" data-parallax="0.1">
                         <!-- Brain Logo SVG -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-bina-black brain-logo-large">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-bina-white brain-logo-large">
                             <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
                             <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
                             <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
@@ -167,7 +167,7 @@
                             <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
                         </svg>
                     </div>
-                    <p class="text-lg md:text-xl mb-8 leading-relaxed parallax-text" data-parallax="0.03">
+                    <p class="text-lg md:text-xl mb-8 leading-relaxed parallax-text text-bina-gray" data-parallax="0.03">
                         <span x-show="language === 'he'">
                             יועץ דיגיטלי ומומחה בינה מלאכותית עם ניסיון רב שנים בהובלת טרנספורמציה דיגיטלית לארגונים וחברות בכל הגדלים. מתמחה בהפיכת רעיונות מורכבים לפתרונות פשוטים ויעילים.
                         </span>
@@ -180,60 +180,60 @@
                 <!-- Skills Bubbles -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
                     <!-- Skill 1: מומחיות טכנולוגית -->
-                    <div class="skill-bubble bg-gradient-to-br from-bina-yellow/20 to-yellow-400/20 border border-bina-yellow/30 rounded-2xl p-6 text-center hover:border-bina-yellow/60 transition-all duration-500 ease-in-out transform hover:scale-105">
-                        <div class="text-bina-yellow text-3xl mb-4">
+                    <div class="skill-bubble bg-white border border-bina-light-gray rounded-2xl p-6 text-center hover:border-bina-light-blue hover:shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105">
+                        <div class="text-bina-light-blue text-3xl mb-4">
                             <i class="fas fa-microchip"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-3 text-white">
+                        <h3 class="text-lg font-bold mb-3 text-bina-dark-gray">
                             <span x-show="language === 'he'">מומחיות טכנולוגית</span>
                             <span x-show="language === 'en'">Technological Expertise</span>
                         </h3>
-                        <p class="text-sm text-gray-300">
+                        <p class="text-sm text-bina-gray">
                             <span x-show="language === 'he'">ידע מעמיק בטכנולוגיות AI מתקדמות והטמעתן בעולם העסקי</span>
                             <span x-show="language === 'en'">Deep knowledge of advanced AI technologies and their implementation in the business world</span>
                         </p>
                     </div>
 
                     <!-- Skill 2: פתרונות מותאמים -->
-                    <div class="skill-bubble bg-gradient-to-br from-bina-yellow/20 to-yellow-400/20 border border-bina-yellow/30 rounded-2xl p-6 text-center hover:border-bina-yellow/60 transition-all duration-500 ease-in-out transform hover:scale-105">
-                        <div class="text-bina-yellow text-3xl mb-4">
+                    <div class="skill-bubble bg-white border border-bina-light-gray rounded-2xl p-6 text-center hover:border-bina-light-blue hover:shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105">
+                        <div class="text-bina-light-blue text-3xl mb-4">
                             <i class="fas fa-cogs"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-3 text-white">
+                        <h3 class="text-lg font-bold mb-3 text-bina-dark-gray">
                             <span x-show="language === 'he'">פתרונות מותאמים</span>
                             <span x-show="language === 'en'">Customized Solutions</span>
                         </h3>
-                        <p class="text-sm text-gray-300">
+                        <p class="text-sm text-bina-gray">
                             <span x-show="language === 'he'">כל פתרון מותאם אישית לצרכים הייחודיים של הלקוח</span>
                             <span x-show="language === 'en'">Every solution is personally tailored to the unique needs of the client</span>
                         </p>
                     </div>
 
                     <!-- Skill 3: חדשנות מובילה -->
-                    <div class="skill-bubble bg-gradient-to-br from-bina-yellow/20 to-yellow-400/20 border border-bina-yellow/30 rounded-2xl p-6 text-center hover:border-bina-yellow/60 transition-all duration-500 ease-in-out transform hover:scale-105">
-                        <div class="text-bina-yellow text-3xl mb-4">
+                    <div class="skill-bubble bg-white border border-bina-light-gray rounded-2xl p-6 text-center hover:border-bina-light-blue hover:shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105">
+                        <div class="text-bina-light-blue text-3xl mb-4">
                             <i class="fas fa-lightbulb"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-3 text-white">
+                        <h3 class="text-lg font-bold mb-3 text-bina-dark-gray">
                             <span x-show="language === 'he'">חדשנות מובילה</span>
                             <span x-show="language === 'en'">Leading Innovation</span>
                         </h3>
-                        <p class="text-sm text-gray-300">
+                        <p class="text-sm text-bina-gray">
                             <span x-show="language === 'he'">תמיד בחזית הטכנולוגיה עם הכלים והמתודולוגיות החדישים</span>
                             <span x-show="language === 'en'">Always at the forefront of technology with the latest tools and methodologies</span>
                         </p>
                     </div>
 
                     <!-- Skill 4: ליווי אישי -->
-                    <div class="skill-bubble bg-gradient-to-br from-bina-yellow/20 to-yellow-400/20 border border-bina-yellow/30 rounded-2xl p-6 text-center hover:border-bina-yellow/60 transition-all duration-500 ease-in-out transform hover:scale-105">
-                        <div class="text-bina-yellow text-3xl mb-4">
+                    <div class="skill-bubble bg-white border border-bina-light-gray rounded-2xl p-6 text-center hover:border-bina-light-blue hover:shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105">
+                        <div class="text-bina-light-blue text-3xl mb-4">
                             <i class="fas fa-hands-helping"></i>
                         </div>
-                        <h3 class="text-lg font-bold mb-3 text-white">
+                        <h3 class="text-lg font-bold mb-3 text-bina-dark-gray">
                             <span x-show="language === 'he'">ליווי אישי</span>
                             <span x-show="language === 'en'">Personal Guidance</span>
                         </h3>
-                        <p class="text-sm text-gray-300">
+                        <p class="text-sm text-bina-gray">
                             <span x-show="language === 'he'">ליווי צמוד לאורך כל התהליך עד להטמעה מוצלחת</span>
                             <span x-show="language === 'en'">Close guidance throughout the entire process until successful implementation</span>
                         </p>
@@ -246,26 +246,26 @@
     <!-- Services Section -->
     <section id="services" class="py-20">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 text-bina-yellow uppercase tracking-wider">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 text-bina-light-blue uppercase tracking-wider">
                 <span x-show="language === 'he'">נפלאות הבינה</span>
                 <span x-show="language === 'en'">The Wonders of AI</span>
             </h2>
             
             <!-- Decorative elements with icon -->
             <div class="flex items-center justify-center mb-12">
-                <div class="w-8 h-0.5 bg-bina-yellow"></div>
-                <i class="fas fa-magic text-bina-yellow text-xl mx-4 decorative-icon"></i>
-                <div class="w-8 h-0.5 bg-bina-yellow"></div>
+                <div class="w-8 h-0.5 bg-bina-light-blue"></div>
+                <i class="fas fa-magic text-bina-light-blue text-xl mx-4 decorative-icon"></i>
+                <div class="w-8 h-0.5 bg-bina-light-blue"></div>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <!-- Service 1 -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-bina-yellow/20 hover:border-bina-yellow/50 transition-all duration-700 ease-in-out service-card">
-                    <div class="text-bina-yellow text-4xl mb-4">
+                <div class="bg-white p-8 rounded-lg border border-bina-light-gray hover:border-bina-light-blue hover:shadow-lg transition-all duration-700 ease-in-out service-card">
+                    <div class="text-bina-light-blue text-4xl mb-4">
                         <i class="fas fa-briefcase"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide" x-text="language === 'he' ? 'העסק החכם' : 'The Smart Business'"></h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide text-bina-dark-gray" x-text="language === 'he' ? 'העסק החכם' : 'The Smart Business'"></h3>
+                    <p class="text-bina-gray mb-4">
                         <span x-show="language === 'he'">
                             בינה מלאכותית היא שותפה עסקית חכמה שמייעלת תהליכים, משווקת ללא הפסקה, וחוסכת זמן וכסף. היא מאפשרת לכל בעל עסק קטן או גדול לפעול כמו מותג ענק בקלות ובאוטומציה מלאה.
                         </span>
@@ -276,37 +276,37 @@
                     <ul class="text-sm text-gray-400 space-y-2">
                         <span x-show="language === 'he'">
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 יוצרת תוכן שיווקי ממגנט למיילים, רשתות ומודעות
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 בונה אתרים, דפי נחיתה וקריאייטיב בלחיצת כפתור
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 מנתחת לקוחות והתנהגות לקנייה חכמה יותר
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 מקימה אוטומציות ושולחת מיילים חכמים 24/7
                             </li>
                         </span>
                         <span x-show="language === 'en'">
                             <li class="flex items-start">
-                                <span class="text-bina-yellow mr-2">•</span>
+                                <span class="text-bina-light-blue mr-2">•</span>
                                 Creates magnetic marketing content for emails, networks and ads
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow mr-2">•</span>
+                                <span class="text-bina-light-blue mr-2">•</span>
                                 Builds websites, landing pages and creative with one click
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow mr-2">•</span>
+                                <span class="text-bina-light-blue mr-2">•</span>
                                 Analyzes customers and behavior for smarter purchasing
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow mr-2">•</span>
+                                <span class="text-bina-light-blue mr-2">•</span>
                                 Sets up automations and sends smart emails 24/7
                             </li>
                         </span>
@@ -314,12 +314,12 @@
                 </div>
                 
                 <!-- Service 2 -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-bina-yellow/20 hover:border-bina-yellow/50 transition-all duration-700 ease-in-out service-card">
-                    <div class="text-bina-yellow text-4xl mb-4">
+                <div class="bg-white p-8 rounded-lg border border-bina-light-gray hover:border-bina-light-blue hover:shadow-lg transition-all duration-700 ease-in-out service-card">
+                    <div class="text-bina-light-blue text-4xl mb-4">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide" x-text="language === 'he' ? 'מערכות חינוך' : 'Education Systems'"></h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide text-bina-dark-gray" x-text="language === 'he' ? 'מערכות חינוך' : 'Education Systems'"></h3>
+                    <p class="text-bina-gray mb-4">
                         <span x-show="language === 'he'">
                             בינה מלאכותית משנה את הדרך בה לומדים ומלמדים. היא מאפשרת הוראה מותאמת אישית, חוסכת זמן למורים ומעצימה את החוויה הלימודית עבור תלמידים בצורה חכמה, מהירה ומרתקת.
                         </span>
@@ -368,12 +368,12 @@
                 </div>
                 
                 <!-- Service 3 -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-bina-yellow/20 hover:border-bina-yellow/50 transition-all duration-700 ease-in-out service-card">
-                    <div class="text-bina-yellow text-4xl mb-4">
+                <div class="bg-white p-8 rounded-lg border border-bina-light-gray hover:border-bina-light-blue hover:shadow-lg transition-all duration-700 ease-in-out service-card">
+                    <div class="text-bina-light-blue text-4xl mb-4">
                         <i class="fas fa-video"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide" x-text="language === 'he' ? 'יצירת תמונות וסרטים' : 'Creating Images and Videos'"></h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide text-bina-dark-gray" x-text="language === 'he' ? 'יצירת תמונות וסרטים' : 'Creating Images and Videos'"></h3>
+                    <p class="text-bina-gray mb-4">
                         <span x-show="language === 'he'">
                             בעזרת בינה מלאכותית, כל אחד יכול ליצור תוכן ויזואלי מדהים בלי צוות צילום או תוכנות מסובכות. כל רעיון הופך לויז'ואל מקצועי בתוך דקות.
                         </span>
@@ -422,12 +422,12 @@
                 </div>
                 
                 <!-- Service 4 -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-bina-yellow/20 hover:border-bina-yellow/50 transition-all duration-700 ease-in-out service-card">
-                    <div class="text-bina-yellow text-4xl mb-4">
+                <div class="bg-white p-8 rounded-lg border border-bina-light-gray hover:border-bina-light-blue hover:shadow-lg transition-all duration-700 ease-in-out service-card">
+                    <div class="text-bina-light-blue text-4xl mb-4">
                         <i class="fas fa-home"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide" x-text="language === 'he' ? 'ניהול משק בית יעיל' : 'Efficient Home Management'"></h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide text-bina-dark-gray" x-text="language === 'he' ? 'ניהול משק בית יעיל' : 'Efficient Home Management'"></h3>
+                    <p class="text-bina-gray mb-4">
                         <span x-show="language === 'he'">
                             AI נכנס גם הביתה והופך את היומיום לחכם וזורם יותר. הוא מסייע בניהול, תזמון, תקשורת ופתרון בעיות ממש כמו עוזר אישי פרטי שזמין תמיד.
                         </span>
@@ -438,19 +438,19 @@
                     <ul class="text-sm text-gray-400 space-y-2">
                         <span x-show="language === 'he'">
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 מתכנן תקציב משפחתי ולעקוב אחרי הוצאות
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 כותב הודעות, מתזמן פגישות ונותן תזכורות
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 מציע רעיונות לבישול ומארגן קניות
                             </li>
                             <li class="flex items-start">
-                                <span class="text-bina-yellow ml-2">•</span>
+                                <span class="text-bina-light-blue ml-2">•</span>
                                 מסייע בפתרון תקלות טכניות או יומיומיות
                             </li>
                         </span>
@@ -476,12 +476,12 @@
                 </div>
                 
                 <!-- Service 5 -->
-                <div class="bg-gray-900 p-8 rounded-lg border border-bina-yellow/20 hover:border-bina-yellow/50 transition-all duration-700 ease-in-out service-card">
-                    <div class="text-bina-yellow text-4xl mb-4">
+                <div class="bg-white p-8 rounded-lg border border-bina-light-gray hover:border-bina-light-blue hover:shadow-lg transition-all duration-700 ease-in-out service-card">
+                    <div class="text-bina-light-blue text-4xl mb-4">
                         <i class="fas fa-user-friends"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide" x-text="language === 'he' ? 'בינה בגיל השלישי' : 'AI for Seniors'"></h3>
-                    <p class="text-gray-300 mb-4">
+                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide text-bina-dark-gray" x-text="language === 'he' ? 'בינה בגיל השלישי' : 'AI for Seniors'"></h3>
+                    <p class="text-bina-gray mb-4">
                         <span x-show="language === 'he'">
                             בינה מלאכותית מעניקה לאנשים בגיל השלישי כלים לעצמאות, תקשורת, התמצאות בעולם הדיגיטלי ותחושת ביטחון בדרך נעימה, פשוטה ומונגשת.
                         </span>
@@ -533,32 +533,32 @@
     </section>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-20 bg-gray-900">
+    <section id="faq" class="py-20 bg-bina-deep-blue">
         <div class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 text-bina-yellow uppercase tracking-wider">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-center mb-8 text-bina-white uppercase tracking-wider">
                 <span x-show="language === 'he'">שאלות ותשובות</span>
                 <span x-show="language === 'en'">Frequently Asked Questions</span>
             </h2>
             
             <!-- Decorative elements with icon -->
             <div class="flex items-center justify-center mb-12">
-                <div class="w-8 h-0.5 bg-bina-yellow"></div>
-                <i class="fas fa-question-circle text-bina-yellow text-xl mx-4 decorative-icon"></i>
-                <div class="w-8 h-0.5 bg-bina-yellow"></div>
+                <div class="w-8 h-0.5 bg-bina-white"></div>
+                <i class="fas fa-question-circle text-bina-white text-xl mx-4 decorative-icon"></i>
+                <div class="w-8 h-0.5 bg-bina-white"></div>
             </div>
             
             <div class="max-w-4xl mx-auto space-y-4">
                 <!-- FAQ Item 1 -->
-                <div x-data="{ open: false }" class="bg-bina-black border border-bina-yellow/20 rounded-lg">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-800 transition-colors">
-                        <span class="font-extrabold text-lg uppercase tracking-wide">
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
                             <span x-show="language === 'he'">מה זה בכלל בינה מלאכותית?</span>
                             <span x-show="language === 'en'">What is artificial intelligence anyway?</span>
                         </span>
-                        <i class="fas fa-chevron-down transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-transition class="px-6 pb-4 pt-4">
-                        <p class="text-gray-300">
+                        <p class="text-bina-gray">
                             <span x-show="language === 'he'">
                                 בינה מלאכותית היא טכנולוגיה שמאפשרת למחשבים לבצע פעולות שדורשות חשיבה – כמו הבנה, חיזוי ויצירה.
                             </span>
@@ -570,16 +570,16 @@
                 </div>
                 
                 <!-- FAQ Item 2 -->
-                <div x-data="{ open: false }" class="bg-bina-black border border-bina-yellow/20 rounded-lg">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-800 transition-colors">
-                        <span class="font-extrabold text-lg uppercase tracking-wide">
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
                             <span x-show="language === 'he'">האם אני צריך רקע טכנולוגי כדי ללמוד?</span>
                             <span x-show="language === 'en'">Do I need a technological background to learn?</span>
                         </span>
-                        <i class="fas fa-chevron-down transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-transition class="px-6 pb-4 pt-4">
-                        <p class="text-gray-300">
+                        <p class="text-bina-gray">
                             <span x-show="language === 'he'">
                                 ממש לא. כל הקורסים בנויים לגמרי למתחילים, בקצב אישי ובהנחיה תומכת.
                             </span>
@@ -591,16 +591,16 @@
                 </div>
                 
                 <!-- FAQ Item 3 -->
-                <div x-data="{ open: false }" class="bg-bina-black border border-bina-yellow/20 rounded-lg">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-800 transition-colors">
-                        <span class="font-extrabold text-lg uppercase tracking-wide">
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
                             <span x-show="language === 'he'">אני עסק קטן – זה רלוונטי לי?</span>
                             <span x-show="language === 'en'">I'm a small business – is this relevant to me?</span>
                         </span>
-                        <i class="fas fa-chevron-down transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-transition class="px-6 pb-4 pt-4">
-                        <p class="text-gray-300">
+                        <p class="text-bina-gray">
                             <span x-show="language === 'he'">
                                 בהחלט! אפילו עסקים קטנים יכולים להרוויח זמן וכסף בשימוש נכון ב-AI.
                             </span>
@@ -612,16 +612,16 @@
                 </div>
                 
                 <!-- FAQ Item 4 -->
-                <div x-data="{ open: false }" class="bg-bina-black border border-bina-yellow/20 rounded-lg">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-800 transition-colors">
-                        <span class="font-extrabold text-lg uppercase tracking-wide">
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
                             <span x-show="language === 'he'">איך מתקדמים מכאן?</span>
                             <span x-show="language === 'en'">How do we proceed from here?</span>
                         </span>
-                        <i class="fas fa-chevron-down transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-transition class="px-6 pb-4 pt-4">
-                        <p class="text-gray-300">
+                        <p class="text-bina-gray">
                             <span x-show="language === 'he'">
                                 פשוט יוצרים קשר באמצעות הפרטים באתר ומשם אני אכוון אותך לתוכנית ההכשרה או הליווי שמתאימים לך מתוך האפשרויות הקיימות. 
                             </span>
@@ -633,16 +633,16 @@
                 </div>
 
                 <!-- FAQ Item 5 -->
-                <div x-data="{ open: false }" class="bg-bina-black border border-bina-yellow/20 rounded-lg">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-800 transition-colors">
-                        <span class="font-extrabold text-lg uppercase tracking-wide">
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
                             <span x-show="language === 'he'">האם צריך לרכוש ציוד או תוכנות מיוחדות?</span>
                             <span x-show="language === 'en'">Do I need to purchase special equipment or software?</span>
                         </span>
-                        <i class="fas fa-chevron-down transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-transition class="px-6 pb-4 pt-4">
-                        <p class="text-gray-300">
+                        <p class="text-bina-gray">
                             <span x-show="language === 'he'">
                                 ממש לא. רוב הכלים שבהם אני משתמש מבוססים על שירותים קיימים באינטרנט עם גרסאות חינמיות. אני דואג להכיר לך את מה שאתה צריך במסגרת השימוש החינמי, בלי רכישות מיותרות.
                             </span>
@@ -654,16 +654,16 @@
                 </div>
 
                 <!-- FAQ Item 6 -->
-                <div x-data="{ open: false }" class="bg-bina-black border border-bina-yellow/20 rounded-lg">
-                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-800 transition-colors">
-                        <span class="font-extrabold text-lg uppercase tracking-wide">
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
                             <span x-show="language === 'he'">מה לגבי תמיכה בהמשך?</span>
                             <span x-show="language === 'en'">What about ongoing support?</span>
                         </span>
-                        <i class="fas fa-chevron-down transition-transform" :class="open ? 'rotate-180' : ''"></i>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
                     </button>
                     <div x-show="open" x-transition class="px-6 pb-4 pt-4">
-                        <p class="text-gray-300">
+                        <p class="text-bina-gray">
                             <span x-show="language === 'he'">
                                 אני מספק לכל משתתף חומרי עזר והדרכה ברמה גבוהה – סרטונים, מסמכים ודפי תרגול – שיישארו זמינים עבורך גם לאחר הלמידה. החומרים נבנו כך שתוכל לחזור אליהם מתי שתרצה, לחזק את ההבנה ולהמשיך להתקדם בעצמך בביטחון.
                             </span>
@@ -702,40 +702,40 @@
                     <form action="https://formspree.io/f/xpzgwqzg" method="POST" class="space-y-6">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-sm font-medium mb-2">
+                                <label class="block text-sm font-medium mb-2 text-bina-white">
                                     <span x-show="language === 'he'">שם מלא</span>
                                     <span x-show="language === 'en'">Full Name</span>
                                 </label>
-                                <input type="text" name="name" required class="w-full px-4 py-3 bg-gray-900 border border-bina-yellow/20 rounded-lg focus:border-bina-yellow focus:outline-none" :placeholder="language === 'he' ? 'שם מלא' : 'Full Name'">
+                                <input type="text" name="name" required class="w-full px-4 py-3 bg-bina-white border border-bina-deep-blue rounded-lg focus:border-bina-light-blue focus:outline-none text-bina-dark-gray placeholder-bina-gray" :placeholder="language === 'he' ? 'שם מלא' : 'Full Name'">
                             </div>
                             
                             <div>
-                                <label class="block text-sm font-medium mb-2">
+                                <label class="block text-sm font-medium mb-2 text-bina-white">
                                     <span x-show="language === 'he'">אימייל</span>
                                     <span x-show="language === 'en'">Email</span>
                                 </label>
-                                <input type="email" name="email" required class="w-full px-4 py-3 bg-gray-900 border border-bina-yellow/20 rounded-lg focus:border-bina-yellow focus:outline-none" :placeholder="language === 'he' ? 'אימייל' : 'Email'">
+                                <input type="email" name="email" required class="w-full px-4 py-3 bg-bina-white border border-bina-deep-blue rounded-lg focus:border-bina-light-blue focus:outline-none text-bina-dark-gray placeholder-bina-gray" :placeholder="language === 'he' ? 'אימייל' : 'Email'">
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium mb-2">
+                            <label class="block text-sm font-medium mb-2 text-bina-white">
                                 <span x-show="language === 'he'">נושא</span>
                                 <span x-show="language === 'en'">Subject</span>
                             </label>
-                            <input type="text" name="subject" class="w-full px-4 py-3 bg-gray-900 border border-bina-yellow/20 rounded-lg focus:border-bina-yellow focus:outline-none" :placeholder="language === 'he' ? 'נושא' : 'Subject'">
+                            <input type="text" name="subject" class="w-full px-4 py-3 bg-bina-white border border-bina-deep-blue rounded-lg focus:border-bina-light-blue focus:outline-none text-bina-dark-gray placeholder-bina-gray" :placeholder="language === 'he' ? 'נושא' : 'Subject'">
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-medium mb-2">
+                            <label class="block text-sm font-medium mb-2 text-bina-white">
                                 <span x-show="language === 'he'">הודעה</span>
                                 <span x-show="language === 'en'">Message</span>
                             </label>
-                            <textarea name="message" rows="6" required class="w-full px-4 py-3 bg-gray-900 border border-bina-yellow/20 rounded-lg focus:border-bina-yellow focus:outline-none resize-none" :placeholder="language === 'he' ? 'הודעה' : 'Message'"></textarea>
+                            <textarea name="message" rows="6" required class="w-full px-4 py-3 bg-bina-white border border-bina-deep-blue rounded-lg focus:border-bina-light-blue focus:outline-none resize-none text-bina-dark-gray placeholder-bina-gray" :placeholder="language === 'he' ? 'הודעה' : 'Message'"></textarea>
                         </div>
                         
                         <div class="text-center">
-                            <button type="submit" class="bg-bina-yellow text-bina-black px-8 py-4 rounded-lg text-xl font-bold hover:bg-yellow-400 transition-colors">
+                            <button type="submit" class="bg-bina-deep-blue text-bina-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-bina-light-blue hover:shadow-lg active:shadow-inner transition-all duration-200">
                                 <span x-show="language === 'he'">שלחו לי פרטים</span>
                                 <span x-show="language === 'en'">Send Me Details</span>
                             </button>
@@ -745,7 +745,7 @@
 
                 <!-- Contact Details -->
                 <div>
-                    <h3 class="text-2xl font-bold mb-6 text-bina-yellow">
+                    <h3 class="text-2xl font-bold mb-6 text-bina-light-blue">
                         <span x-show="language === 'he'">פרטי התקשרות</span>
                         <span x-show="language === 'en'">Contact Details</span>
                     </h3>
@@ -753,71 +753,71 @@
                     <div class="space-y-6">
                         <!-- Email -->
                         <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                            <div class="w-12 h-12 bg-bina-yellow/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-envelope text-bina-yellow text-xl"></i>
+                            <div class="w-12 h-12 bg-bina-light-blue/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-bina-light-blue text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-400">
+                                <p class="text-sm text-bina-gray">
                                     <span x-show="language === 'he'">אימייל</span>
                                     <span x-show="language === 'en'">Email</span>
                                 </p>
-                                <a href="mailto:info@bina4all.com" class="text-white hover:text-bina-yellow transition-colors">info@bina4all.com</a>
+                                <a href="mailto:info@bina4all.com" class="text-bina-dark-gray hover:text-bina-light-blue transition-colors">info@bina4all.com</a>
                             </div>
                         </div>
 
                         <!-- Phone -->
                         <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                            <div class="w-12 h-12 bg-bina-yellow/20 rounded-full flex items-center justify-center">
-                                <i class="fas fa-phone text-bina-yellow text-xl"></i>
+                            <div class="w-12 h-12 bg-bina-light-blue/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone text-bina-light-blue text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-400">
+                                <p class="text-sm text-bina-gray">
                                     <span x-show="language === 'he'">טלפון</span>
                                     <span x-show="language === 'en'">Phone</span>
                                 </p>
-                                <a href="tel:+972546364172" class="text-white hover:text-bina-yellow transition-colors" dir="ltr">+972-54-636-4172</a>
+                                <a href="tel:+972546364172" class="text-bina-dark-gray hover:text-bina-light-blue transition-colors" dir="ltr">+972-54-636-4172</a>
                             </div>
                         </div>
 
                         <!-- WhatsApp -->
                         <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                            <div class="w-12 h-12 bg-bina-yellow/20 rounded-full flex items-center justify-center">
-                                <i class="fab fa-whatsapp text-bina-yellow text-xl"></i>
+                            <div class="w-12 h-12 bg-bina-light-blue/20 rounded-full flex items-center justify-center">
+                                <i class="fab fa-whatsapp text-bina-light-blue text-xl"></i>
                             </div>
                             <div>
-                                <p class="text-sm text-gray-400">
+                                <p class="text-sm text-bina-gray">
                                     <span x-show="language === 'he'">ווטסאפ</span>
                                     <span x-show="language === 'en'">WhatsApp</span>
                                 </p>
-                                <a href="https://wa.me/972546364172" target="_blank" class="text-white hover:text-bina-yellow transition-colors" dir="ltr">+972-54-636-4172</a>
+                                <a href="https://wa.me/972546364172" target="_blank" class="text-bina-dark-gray hover:text-bina-light-blue transition-colors" dir="ltr">+972-54-636-4172</a>
                             </div>
                         </div>
 
                         <!-- Social Media -->
                         <div class="pt-6">
-                            <p class="text-sm text-gray-400 mb-4">
+                            <p class="text-sm text-bina-gray mb-4">
                                 <span x-show="language === 'he'">עקבו אחריי ברשתות החברתיות</span>
                                 <span x-show="language === 'en'">Follow me on social media</span>
                             </p>
                             <div class="flex space-x-4 rtl:space-x-reverse">
                                 <!-- LinkedIn -->
-                                <a href="https://linkedin.com/in/bina4all" target="_blank" class="w-12 h-12 bg-bina-yellow/20 rounded-full flex items-center justify-center hover:bg-bina-yellow/30 transition-colors">
-                                    <i class="fab fa-linkedin text-bina-yellow text-xl"></i>
+                                <a href="https://linkedin.com/in/bina4all" target="_blank" class="w-12 h-12 bg-bina-light-blue/20 rounded-full flex items-center justify-center hover:bg-bina-light-blue/30 transition-colors">
+                                    <i class="fab fa-linkedin text-bina-light-blue text-xl"></i>
                                 </a>
                                 
                                 <!-- Facebook -->
-                                <a href="https://facebook.com/bina4all" target="_blank" class="w-12 h-12 bg-bina-yellow/20 rounded-full flex items-center justify-center hover:bg-bina-yellow/30 transition-colors">
-                                    <i class="fab fa-facebook text-bina-yellow text-xl"></i>
+                                <a href="https://facebook.com/bina4all" target="_blank" class="w-12 h-12 bg-bina-light-blue/20 rounded-full flex items-center justify-center hover:bg-bina-light-blue/30 transition-colors">
+                                    <i class="fab fa-facebook text-bina-light-blue text-xl"></i>
                                 </a>
                                 
                                 <!-- Instagram -->
-                                <a href="https://instagram.com/bina4all" target="_blank" class="w-12 h-12 bg-bina-yellow/20 rounded-full flex items-center justify-center hover:bg-bina-yellow/30 transition-colors">
-                                    <i class="fab fa-instagram text-bina-yellow text-xl"></i>
+                                <a href="https://instagram.com/bina4all" target="_blank" class="w-12 h-12 bg-bina-light-blue/20 rounded-full flex items-center justify-center hover:bg-bina-light-blue/30 transition-colors">
+                                    <i class="fab fa-instagram text-bina-light-blue text-xl"></i>
                                 </a>
                                 
                                 <!-- YouTube -->
-                                <a href="https://youtube.com/@bina4all" target="_blank" class="w-12 h-12 bg-bina-yellow/20 rounded-full flex items-center justify-center hover:bg-bina-yellow/30 transition-colors">
-                                    <i class="fab fa-youtube text-bina-yellow text-xl"></i>
+                                <a href="https://youtube.com/@bina4all" target="_blank" class="w-12 h-12 bg-bina-light-blue/20 rounded-full flex items-center justify-center hover:bg-bina-light-blue/30 transition-colors">
+                                    <i class="fab fa-youtube text-bina-light-blue text-xl"></i>
                                 </a>
                             </div>
                         </div>
@@ -839,7 +839,7 @@
                 <div class="space-y-4">
                     <div class="flex items-center space-x-3 rtl:space-x-reverse">
                         <!-- Brain Logo SVG -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-bina-yellow brain-logo-small">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-bina-light-blue brain-logo-small">
                             <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"></path>
                             <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"></path>
                             <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"></path>
@@ -850,7 +850,7 @@
                             <path d="M6 18a4 4 0 0 1-1.967-.516"></path>
                             <path d="M19.967 17.484A4 4 0 0 1 18 18"></path>
                         </svg>
-                        <div class="text-bina-yellow text-2xl font-bold">
+                        <div class="text-bina-light-blue text-2xl font-bold">
                             <span x-show="language === 'he'">בינה לכל</span>
                             <span x-show="language === 'en'">Bina4All</span>
                         </div>
