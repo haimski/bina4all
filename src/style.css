@@ -20,6 +20,25 @@
   background: #1E40AF;
 }
 
+/* Remove focus outline from all links */
+a:focus,
+a:focus-visible {
+  outline: none !important;
+}
+
+/* Remove focus outline from buttons */
+button:focus,
+button:focus-visible {
+  outline: none !important;
+}
+
+/* Remove focus outline from form elements */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+}
+
 /* Smooth transitions for language switching */
 * {
   transition: font-family 0.3s ease;

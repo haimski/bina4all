@@ -63,7 +63,7 @@
                 </div>
                 
                 <!-- CTA Button -->
-                <a href="#contact" class="bg-bina-light-blue text-bina-white px-6 py-2 rounded-lg font-semibold hover:bg-bina-deep-blue transition-colors shadow-sm" x-text="language === 'he' ? 'הצטרפו עכשיו' : 'Join Now'"></a>
+                <a href="#contact" class="bg-bina-light-blue text-bina-white px-6 py-2 rounded-lg font-semibold hover:bg-bina-deep-blue transition-colors shadow-sm" x-text="language === 'he' ? 'דברו איתי' : 'Contact Me'"></a>
             </div>
         </nav>
     </header>
@@ -690,7 +690,7 @@
                         <span x-show="language === 'he'">שלחו לי הודעה</span>
                         <span x-show="language === 'en'">Send Me a Message</span>
                     </h3>
-                    <form action="https://formspree.io/f/xrblyqlr" method="POST" class="space-y-6">
+                    <form action="https://formspree.io/f/xrblyqlr" method="POST" class="space-y-6" id="contact-form">
                         <div class="grid md:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-sm font-medium mb-2 text-bina-white">
@@ -732,6 +732,21 @@
                             </button>
                         </div>
                     </form>
+                    
+                    <!-- Thank You Message -->
+                    <div id="thank-you-message" class="hidden mt-8 text-center">
+                        <div class="w-16 h-16 bg-bina-deep-blue rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check text-bina-white text-2xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-bina-deep-blue mb-3">
+                            <span x-show="language === 'he'">תודה לכם!</span>
+                            <span x-show="language === 'en'">Thank You!</span>
+                        </h4>
+                        <p class="text-bina-deep-blue text-lg">
+                            <span x-show="language === 'he'">ההודעה שלכם נשלחה בהצלחה. אני אחזור אליכם בהקדם האפשרי!</span>
+                            <span x-show="language === 'en'">Your message has been sent successfully. I'll get back to you as soon as possible!</span>
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Contact Details -->
