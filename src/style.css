@@ -65,6 +65,12 @@ input:focus, textarea:focus {
   margin-left: 0;
 }
 
+/* Phone number display fix for RTL */
+[dir="rtl"] a[href^="tel:"] {
+  unicode-bidi: plaintext;
+  direction: ltr;
+}
+
 /* Enhanced Typography */
 .hero-title {
   text-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
