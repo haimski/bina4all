@@ -275,3 +275,103 @@ function initInteractiveGrid() {
 document.addEventListener('DOMContentLoaded', () => {
   initInteractiveGrid()
 }) 
+
+function initProjectsSection() {
+  const grid = document.getElementById('projects-grid');
+  if (!grid) return;
+
+  // שמות קבצי התמונות (ב-public/projects)
+  const images = [
+    '1.jpg',
+    '2.jpg',
+    '3.jpg',
+    '4.jpg',
+    '5.jpg',
+    '6.jpg',
+    '7.jpg',
+    '8.jpg',
+    '9.jpg',
+    '10.jpg',
+    '11.jpg'
+  ];
+
+  // הגריד: שלוש בשורה, רווחים, רספונסיבי
+  grid.innerHTML = '';
+  grid.style.display = 'grid';
+  grid.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
+  grid.style.gap = '32px';
+  grid.style.justifyItems = 'center';
+  grid.style.alignItems = 'start';
+
+  images.forEach((file) => {
+    const item = document.createElement('div');
+    item.style.display = 'flex';
+    item.style.flexDirection = 'column';
+    item.style.alignItems = 'center';
+
+    const img = document.createElement('img');
+    img.src = `/projects/${file}`;
+    img.alt = '';
+    img.style.width = '100%';
+    img.style.maxWidth = '280px';
+    img.style.height = '200px';
+    img.style.objectFit = 'cover';
+    img.style.borderRadius = '0';
+    img.style.boxShadow = '0 4px 24px 0 rgba(59,130,246,0.10)';
+    img.style.background = 'rgba(255,255,255,0.7)';
+    img.style.transition = 'transform 0.2s, box-shadow 0.2s, opacity 0.2s';
+    img.style.opacity = '0.85';
+    img.style.cursor = 'pointer';
+    img.addEventListener('mouseenter', () => {
+      img.style.transform = 'scale(1.04)';
+      img.style.boxShadow = '0 8px 32px 0 rgba(59,130,246,0.18)';
+      img.style.opacity = '1';
+    });
+    img.addEventListener('mouseleave', () => {
+      img.style.transform = 'scale(1)';
+      img.style.boxShadow = '0 4px 24px 0 rgba(59,130,246,0.10)';
+      img.style.opacity = '0.85';
+    });
+    img.addEventListener('click', () => showLargeImage(file));
+
+    item.appendChild(img);
+    grid.appendChild(item);
+  });
+
+  function showLargeImage(file) {
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgba(0,0,0,0.82)';
+    overlay.style.display = 'flex';
+    overlay.style.flexDirection = 'column';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.zIndex = 9999;
+    overlay.style.cursor = 'pointer';
+
+    const largeImg = document.createElement('img');
+    largeImg.src = `/projects/${file}`;
+    largeImg.alt = '';
+    largeImg.style.maxWidth = '90vw';
+    largeImg.style.maxHeight = '80vh';
+    largeImg.style.borderRadius = '0';
+    largeImg.style.boxShadow = '0 0 60px 0 rgba(59,130,246,0.25)';
+    largeImg.style.background = 'rgba(255,255,255,0.85)';
+    largeImg.style.opacity = '0.97';
+
+    overlay.appendChild(largeImg);
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener('click', () => {
+      document.body.removeChild(overlay);
+    });
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initProjectsSection();
+});
