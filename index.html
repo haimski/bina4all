@@ -53,6 +53,16 @@
     
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script type="module" src="/src/main.js"></script>
+    
+    <!-- VirtualSpirits Chatbot -->
+    <script type="text/javascript">
+     var vsid = "ci217764e9fe48d";
+     (function() { 
+      var vsjs = document.createElement('script'); vsjs.type = 'text/javascript'; vsjs.async = true; vsjs.setAttribute('defer', 'defer');
+       vsjs.src = 'https://www.virtualspirits.co.il/vsa/chat.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(vsjs, s);
+     })();
+    </script>
 </head>
 <body class="bg-bina-white text-bina-dark-gray font-hebrew" :class="language === 'en' ? 'font-english' : 'font-hebrew'">
     
