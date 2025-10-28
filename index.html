@@ -67,7 +67,7 @@
 <body class="bg-bina-white text-bina-dark-gray font-hebrew" :class="language === 'en' ? 'font-english' : 'font-hebrew'">
     
     <!-- Header -->
-    <header class="fixed top-0 w-full bg-bina-white/95 backdrop-blur-sm z-50 border-b border-bina-light-gray shadow-sm">
+    <header class="fixed top-0 w-full bg-bina-white/95 backdrop-blur-sm z-50 border-b border-bina-light-gray shadow-sm" x-data="{ mobileOpen: false }" x-init="window.addEventListener('hashchange', () => { mobileOpen = false })">
         <nav class="container mx-auto px-4 py-4 flex items-center justify-between">
             <!-- Logo -->
             <a href="#home" class="flex items-center space-x-4 rtl:space-x-reverse hover:opacity-80 transition-opacity">
@@ -97,20 +97,45 @@
                 <a href="#contact" class="text-bina-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'יצירת קשר' : 'Contact'"></a>
             </div>
             
-            <!-- Language Toggle & CTA -->
-            <div class="flex items-center space-x-4 rtl:space-x-reverse">
-                <!-- Language Toggle -->
-                <div class="flex items-center space-x-2 rtl:space-x-reverse">
-                    <button @click="language = 'he'" :class="language === 'he' ? 'text-bina-light-blue' : 'text-bina-gray'" class="hover:text-bina-light-blue transition-colors">עברית</button>
-                    <span class="text-bina-gray">|</span>
-                    <button @click="language = 'en'" :class="language === 'en' ? 'text-bina-light-blue' : 'text-bina-gray'" class="hover:text-bina-light-blue transition-colors">English</button>
+            <!-- Right Controls: Mobile Menu Toggle + CTA -->
+            <div class="flex items-center gap-3">
+                <!-- Mobile Hamburger (shown on small screens) -->
+                <button class="md:hidden p-2 rounded-lg border border-bina-light-gray hover:border-bina-light-blue text-bina-dark-gray hover:text-bina-light-blue transition-colors"
+                        @click="mobileOpen = !mobileOpen" aria-label="Toggle menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <!-- CTA Button (hidden on mobile) -->
+                <div class="hidden md:flex items-center">
+                    <a href="#contact" class="bg-bina-light-blue text-bina-white px-6 py-2 rounded-lg font-semibold hover:bg-bina-deep-blue transition-colors shadow-sm" x-text="language === 'he' ? 'דברו איתי' : 'Contact Me'"></a>
                 </div>
-                
-                <!-- CTA Button -->
-                <a href="#contact" class="bg-bina-light-blue text-bina-white px-6 py-2 rounded-lg font-semibold hover:bg-bina-deep-blue transition-colors shadow-sm" x-text="language === 'he' ? 'דברו איתי' : 'Contact Me'"></a>
             </div>
         </nav>
+        
+        <!-- Mobile Menu Panel -->
+        <div class="md:hidden" x-show="mobileOpen" x-transition>
+            <div class="border-t border-bina-light-gray bg-white shadow-sm">
+                <div class="container mx-auto px-4 py-3 flex flex-col space-y-2" @click.outside="mobileOpen = false">
+                    <a @click="mobileOpen = false" href="#about" class="py-2 text-bina-dark-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'אודות' : 'About'"></a>
+                    <a @click="mobileOpen = false" href="#services" class="py-2 text-bina-dark-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'שירותים' : 'Services'"></a>
+                    <a @click="mobileOpen = false" href="#faq" class="py-2 text-bina-dark-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'שאלות ותשובות' : 'FAQ'"></a>
+                    <a @click="mobileOpen = false" href="#contact" class="py-2 text-bina-dark-gray hover:text-bina-light-blue transition-colors" x-text="language === 'he' ? 'יצירת קשר' : 'Contact'"></a>
+                </div>
+            </div>
+        </div>
     </header>
+
+    <!-- Floating Language Bubble (top-right under header) -->
+    <div class="fixed right-4 top-20 z-40">
+        <button @click="language = language === 'he' ? 'en' : 'he'"
+                class="bg-bina-light-blue/90 text-bina-white rounded-full shadow-lg px-4 py-2 flex items-center gap-2 hover:bg-bina-deep-blue transition-colors">
+            <span class="text-xl" x-show="language === 'he'" aria-hidden="true">🇺🇸</span>
+            <span class="text-xl" x-show="language === 'en'" aria-hidden="true">🇮🇱</span>
+            <span class="sr-only" x-text="language === 'he' ? 'Switch to English' : 'החלף לעברית'"></span>
+        </button>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
@@ -135,10 +160,10 @@
             <div class="max-w-4xl mx-auto">
                 <h1 class="text-4xl md:text-6xl font-extrabold text-bina-dark-gray tracking-wide leading-tight parallax-title" data-parallax="0.1">
                     <span x-show="language === 'he'">
-                        <span class="text-bina-light-blue">אוטומציה עסקית</span> פיתוח אתרים ושיווק דיגיטלי
+                        <span class="text-bina-light-blue">אוטומציה עסקית</span>, הקמת מערכות CRM, פיתוח אתרים ושיווק דיגיטלי
                     </span>
                     <span x-show="language === 'en'">
-                        <span class="text-bina-light-blue">Business Automation</span> Web Development & Digital Marketing
+                        <span class="text-bina-light-blue">Business Automation</span>, CRM Systems, Web Development & Digital Marketing
                     </span>
                 </h1>
                 
@@ -147,10 +172,10 @@
                 
                 <p class="text-xl md:text-2xl mb-12 leading-relaxed max-w-3xl mx-auto parallax-subtitle text-bina-gray" data-parallax="0.05">
                     <span x-show="language === 'he'">
-                        מתמחה באוטומציה חכמה עם Make, Zapier ו-N8N, פיתוח אתרים עם WordPress ו-WooCommerce, ושיווק דיגיטלי מתקדם. הופכים רעיונות לפתרונות דיגיטליים מקצועיים.
+                        מתמחה באוטומציה חכמה עם Make, Zapier ו-N8N, הקמה והטמעה של מערכות CRM, פיתוח אתרים עם WordPress ו-WooCommerce, ושיווק דיגיטלי מתקדם. הופכים רעיונות לפתרונות דיגיטליים מקצועיים.
                     </span>
                     <span x-show="language === 'en'">
-                        Specializing in smart automation with Make, Zapier & N8N, WordPress & WooCommerce development, and advanced digital marketing. 
+                        Specializing in smart automation with Make, Zapier & N8N, CRM implementation, WordPress & WooCommerce development, and advanced digital marketing. 
                         Turning ideas into professional digital solutions.
                     </span>
                 </p>
@@ -244,7 +269,22 @@
                         </p>
                     </div>
 
-                    <!-- Skill 3: שיווק דיגיטלי -->
+                    <!-- Skill 3: CRM -->
+                    <div class="skill-bubble bg-white border border-bina-light-gray rounded-2xl p-6 text-center hover:border-bina-light-blue hover:shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105">
+                        <div class="text-bina-light-blue text-3xl mb-4">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-3 text-bina-dark-gray">
+                            <span x-show="language === 'he'">הקמת והטמעת CRM</span>
+                            <span x-show="language === 'en'">CRM Setup & Implementation</span>
+                        </h3>
+                        <p class="text-sm text-bina-gray">
+                            <span x-show="language === 'he'">הקמה, התאמה אישית וחיבור למערכות קיימות לניהול לקוחות יעיל</span>
+                            <span x-show="language === 'en'">Setup, customization, and integrations for efficient customer management</span>
+                        </p>
+                    </div>
+
+                    <!-- Skill 4: שיווק דיגיטלי -->
                     <div class="skill-bubble bg-white border border-bina-light-gray rounded-2xl p-6 text-center hover:border-bina-light-blue hover:shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105">
                         <div class="text-bina-light-blue text-3xl mb-4">
                             <i class="fas fa-bullhorn"></i>
@@ -256,21 +296,6 @@
                         <p class="text-sm text-bina-gray">
                             <span x-show="language === 'he'">אסטרטגיות שיווק מתקדמות וניהול קמפיינים</span>
                             <span x-show="language === 'en'">Advanced marketing strategies and campaign management</span>
-                        </p>
-                    </div>
-
-                    <!-- Skill 4: ליווי אישי -->
-                    <div class="skill-bubble bg-white border border-bina-light-gray rounded-2xl p-6 text-center hover:border-bina-light-blue hover:shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105">
-                        <div class="text-bina-light-blue text-3xl mb-4">
-                            <i class="fas fa-hands-helping"></i>
-                        </div>
-                        <h3 class="text-lg font-bold mb-3 text-bina-dark-gray">
-                            <span x-show="language === 'he'">ליווי אישי</span>
-                            <span x-show="language === 'en'">Personal Support</span>
-                        </h3>
-                        <p class="text-sm text-bina-gray">
-                            <span x-show="language === 'he'">ליווי צמוד לאורך כל התהליך עד להטמעה מוצלחת</span>
-                            <span x-show="language === 'en'">Close guidance throughout the entire process until successful implementation</span>
                         </p>
                     </div>
                 </div>
@@ -378,7 +403,7 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="text-bina-light-blue ml-2">•</span>
-                                ביצועים מהירים ואופטימיזציה
+                                ביצועים מהירים, אופטימיזציה ושיווק דיגיטלי כחלק מהפרויקט
                             </li>
                         </span>
                         <span x-show="language === 'en'">
@@ -396,62 +421,43 @@
                             </li>
                             <li class="flex items-start">
                                 <span class="text-bina-light-blue mr-2">•</span>
-                                Fast performance and optimization
+                                Fast performance, optimization and built-in digital marketing
                             </li>
                         </span>
                     </ul>
                 </div>
                 
-                <!-- Service 3 -->
+                
+                
+                <!-- Service 4: CRM -->
                 <div class="bg-white p-8 rounded-lg border border-bina-light-gray hover:border-bina-light-blue hover:shadow-lg transition-all duration-700 ease-in-out service-card">
                     <div class="text-bina-light-blue text-4xl mb-4">
-                        <i class="fas fa-bullhorn"></i>
+                        <i class="fas fa-users-cog"></i>
                     </div>
-                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide text-bina-dark-gray" x-text="language === 'he' ? 'שיווק דיגיטלי' : 'Digital Marketing'"></h3>
+                    <h3 class="text-xl font-extrabold mb-4 uppercase tracking-wide text-bina-dark-gray">
+                        <span x-show="language === 'he'">מערכת ניהול לקוחות (CRM)</span>
+                        <span x-show="language === 'en'">Customer Relationship Management (CRM)</span>
+                    </h3>
                     <p class="text-bina-gray mb-4">
                         <span x-show="language === 'he'">
-                            אסטרטגיות שיווק דיגיטלי מתקדמות לגדילת העסק. ניהול קמפיינים, תוכן שיווקי וניתוח ביצועים להגדלת מכירות ומודעות מותג.
+                            תכנון, הקמה והטמעה של מערכות CRM מותאמות אישית לניהול לידים, לקוחות ותהליכי מכירה. חיבורים לאוטומציות ולכלי החברה לשיפור תהליך השירות והמכירה.
                         </span>
                         <span x-show="language === 'en'">
-                            Advanced digital marketing strategies for business growth. Campaign management, marketing content and performance analysis to increase sales and brand awareness.
+                            Planning, setup, and implementation of tailored CRM systems for leads, customers, and sales pipelines. Integrations with automation and company tools to improve service and sales processes.
                         </span>
                     </p>
                     <ul class="text-sm text-gray-400 space-y-2">
                         <span x-show="language === 'he'">
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue ml-2">•</span>
-                                ניהול קמפיינים ברשתות חברתיות
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue ml-2">•</span>
-                                תוכן שיווקי מקצועי ומותאם
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue ml-2">•</span>
-                                ניתוח ביצועים ומעקב אחרי ROI
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue ml-2">•</span>
-                                אסטרטגיות SEO ו-SEM מתקדמות
-                            </li>
+                            <li class="flex items-start"><span class="text-bina-light-blue ml-2">•</span> ניהול לידים ולקוחות במערכת אחת</li>
+                            <li class="flex items-start"><span class="text-bina-light-blue ml-2">•</span> אוטומציות ותהליכים חכמים במכירות ושירות</li>
+                            <li class="flex items-start"><span class="text-bina-light-blue ml-2">•</span> דוחות, תובנות ומדדים לשיפור ביצועים</li>
+                            <li class="flex items-start"><span class="text-bina-light-blue ml-2">•</span> חיבור ל-WordPress, WooCommerce, Make, Zapier ו-N8N</li>
                         </span>
                         <span x-show="language === 'en'">
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue mr-2">•</span>
-                                Social media campaign management
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue mr-2">•</span>
-                                Professional and tailored marketing content
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue mr-2">•</span>
-                                Performance analysis and ROI tracking
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-bina-light-blue mr-2">•</span>
-                                Advanced SEO & SEM strategies
-                            </li>
+                            <li class="flex items-start"><span class="text-bina-light-blue mr-2">•</span> Centralized leads and customer management</li>
+                            <li class="flex items-start"><span class="text-bina-light-blue mr-2">•</span> Smart automations for sales and support</li>
+                            <li class="flex items-start"><span class="text-bina-light-blue mr-2">•</span> Dashboards, insights, and KPIs</li>
+                            <li class="flex items-start"><span class="text-bina-light-blue mr-2">•</span> Integrations with WordPress, WooCommerce, Make, Zapier & N8N</li>
                         </span>
                     </ul>
                 </div>
@@ -578,7 +584,7 @@
             <span x-show="language === 'he'">פרויקטים</span>
             <span x-show="language === 'en'">Projects</span>
             </h2>
-            <div id="projects-grid" class="flex flex-wrap gap-6 justify-center"></div>
+            <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
     </section>
     <!-- FAQ Section -->
@@ -612,6 +618,40 @@
                             <span x-show="language === 'en'">
                                 Business automation is the use of tools like Make, Zapier, and N8N to connect different systems and build automated processes that save time and increase efficiency.
                             </span>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- CRM FAQ 1 -->
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
+                            <span x-show="language === 'he'">מה זה CRM ולמה זה חשוב?</span>
+                            <span x-show="language === 'en'">What is a CRM and why is it important?</span>
+                        </span>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-transition class="px-6 pb-4 pt-4">
+                        <p class="text-bina-gray">
+                            <span x-show="language === 'he'">CRM היא מערכת לניהול לקוחות, לידים ותהליכי מכירה המאפשרת מעקב, תקשורת ואוטומציה במקום אחד. היא משפרת שירות, מגדילה מכירות ומייעלת תהליכי עבודה.</span>
+                            <span x-show="language === 'en'">A CRM is a system for managing customers, leads, and sales pipelines in one place. It enables tracking, communication, and automation to improve service, increase sales, and streamline operations.</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- CRM FAQ 2 -->
+                <div x-data="{ open: false }" class="bg-white border border-bina-light-blue/20 rounded-lg shadow-sm">
+                    <button @click="open = !open" class="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-100 transition-colors">
+                        <span class="font-extrabold text-lg uppercase tracking-wide text-bina-dark-gray">
+                            <span x-show="language === 'he'">איזה CRM מתאים לעסק שלי?</span>
+                            <span x-show="language === 'en'">Which CRM fits my business?</span>
+                        </span>
+                        <i class="fas fa-chevron-down transition-transform text-bina-light-blue" :class="open ? 'rotate-180' : ''"></i>
+                    </button>
+                    <div x-show="open" x-transition class="px-6 pb-4 pt-4">
+                        <p class="text-bina-gray">
+                            <span x-show="language === 'he'">אנו מתאימים את ה-CRM לכל עסק לפי צרכים: מכירות, שירות, חיבורי API ואוטומציות. עובדים עם פתרונות מובילים פתוחים לאינטגרציות, כולל Make, Zapier ו-N8N.</span>
+                            <span x-show="language === 'en'">We tailor the CRM to your needs: sales, support, API connections, and automations. We work with leading solutions open to integrations, including Make, Zapier, and N8N.</span>
                         </p>
                     </div>
                 </div>
@@ -941,10 +981,10 @@
                     </div>
                     <p class="text-gray-300 text-sm leading-relaxed">
                         <span x-show="language === 'he'">
-                            מומחה אוטומציה עסקית, פיתוח אתרים ושיווק דיגיטלי. מתמחה ב-Make, Zapier, N8N, WordPress, WooCommerce ואסטרטגיות שיווק מתקדמות לעסקים.
+                            מומחה אוטומציה עסקית, הקמת מערכות CRM, פיתוח אתרים ושיווק דיגיטלי. מתמחה ב-Make, Zapier, N8N, WordPress, WooCommerce ו-CRM לעסקים.
                         </span>
                         <span x-show="language === 'en'">
-                            Expert in business automation, web development, and digital marketing. Specializing in Make, Zapier, N8N, WordPress, WooCommerce, and advanced marketing strategies for businesses.
+                            Expert in business automation, CRM implementation, web development, and digital marketing. Specializing in Make, Zapier, N8N, WordPress, WooCommerce, and CRM for businesses.
                         </span>
                     </p>
                 </div>
@@ -998,14 +1038,14 @@
                         </li>
                         <li>
                             <span class="text-gray-300">
-                                <span x-show="language === 'he'">יצירת תמונות וסרטים</span>
-                                <span x-show="language === 'en'">Image & Video Creation</span>
+                                <span x-show="language === 'he'">שיווק דיגיטלי כחלק מפיתוח</span>
+                                <span x-show="language === 'en'">Digital marketing as part of development</span>
                             </span>
                         </li>
                         <li>
                             <span class="text-gray-300">
-                                <span x-show="language === 'he'">ניהול משק בית</span>
-                                <span x-show="language === 'en'">Home Management</span>
+                                <span x-show="language === 'he'">מערכת CRM</span>
+                                <span x-show="language === 'en'">CRM System</span>
                             </span>
                         </li>
                         <li>

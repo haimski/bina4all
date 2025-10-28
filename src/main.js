@@ -295,13 +295,26 @@ function initProjectsSection() {
     '11.jpg'
   ];
 
-  // הגריד: שלוש בשורה, רווחים, רספונסיבי
+  // Grid: responsive columns via JS breakpoints
   grid.innerHTML = '';
   grid.style.display = 'grid';
-  grid.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
   grid.style.gap = '32px';
   grid.style.justifyItems = 'center';
   grid.style.alignItems = 'start';
+
+  function applyGridColumns() {
+    const width = window.innerWidth;
+    // Tailwind-like breakpoints: <640=1, 640-<1024=2, >=1024=3
+    if (width < 640) {
+      grid.style.gridTemplateColumns = 'repeat(1, minmax(0, 1fr))';
+    } else if (width < 1024) {
+      grid.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
+    } else {
+      grid.style.gridTemplateColumns = 'repeat(3, minmax(0, 1fr))';
+    }
+  }
+  applyGridColumns();
+  window.addEventListener('resize', applyGridColumns);
 
   images.forEach((file) => {
     const item = document.createElement('div');
