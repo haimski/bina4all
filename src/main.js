@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStaggeredAnimations()
 })
 
-// Interactive Grid with Twisted Polygon Effect
+// Interactive Neuron Network Map
 function initInteractiveGrid() {
   const canvas = document.getElementById('grid-canvas')
   const heroSection = document.getElementById('home')
@@ -106,13 +106,34 @@ function initInteractiveGrid() {
   const ctx = canvas.getContext('2d')
   let mouseX = 0
   let mouseY = 0
-  let time = 0
   let isMouseInHero = false
+  
+  // Neuron nodes
+  const nodes = []
+  const nodeCount = 55
+  const maxConnectionDistance = 160
   
   // Set canvas size
   function resizeCanvas() {
     canvas.width = canvas.offsetWidth
     canvas.height = canvas.offsetHeight
+    // Regenerate nodes on resize
+    generateNodes()
+  }
+  
+  // Generate neuron nodes
+  function generateNodes() {
+    nodes.length = 0
+    for (let i = 0; i < nodeCount; i++) {
+      nodes.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: 2.5 + Math.random() * 1.5,
+        baseRadius: 2.5 + Math.random() * 1.5
+      })
+    }
   }
   
   resizeCanvas()
@@ -120,7 +141,7 @@ function initInteractiveGrid() {
   
   // Mouse move handler with throttling
   let lastMouseMove = 0
-  const throttleDelay = 8 // ~120fps for smoother animation
+  const throttleDelay = 8
   
   function handleMouseMove(e) {
     const now = Date.now()
@@ -141,124 +162,121 @@ function initInteractiveGrid() {
     isMouseInHero = false
   }
   
-  // Calculate twist effect and visibility based on mouse position
-  function getTwistOffset(baseX, baseY) {
-    const dx = mouseX - baseX
-    const dy = mouseY - baseY
-    const distance = Math.sqrt(dx * dx + dy * dy)
-    const maxDistance = 120 // Reduced by 20% from 150
-    const influence = Math.max(0, 1 - distance / maxDistance)
-    // Ease the animation with smoother influence curve
-    const easedInfluence = Math.pow(influence, 1.5)
-    const twistStrength = 12 * easedInfluence
-    
-    return {
-      x: (dx / distance) * twistStrength * easedInfluence,
-      y: (dy / distance) * twistStrength * easedInfluence,
-      visible: distance <= maxDistance
-    }
+  // Calculate distance between two points
+  function distance(x1, y1, x2, y2) {
+    const dx = x2 - x1
+    const dy = y2 - y1
+    return Math.sqrt(dx * dx + dy * dy)
   }
   
-  // Draw twisted polygon grid
-  function drawGrid() {
-    const gridSize = 40
-    const cols = Math.ceil(canvas.width / gridSize)
-    const rows = Math.ceil(canvas.height / gridSize)
-    
-    ctx.strokeStyle = 'rgba(59, 130, 246, 0.5)'
-    ctx.lineWidth = 2
-    
-    for (let i = 0; i < cols; i++) {
-      for (let j = 0; j < rows; j++) {
-        const baseX = i * gridSize
-        const baseY = j * gridSize
+  // Draw neuron network
+  function drawNeuronNetwork() {
+    // Update node positions with slight movement
+    nodes.forEach(node => {
+      // Boundary checking with bounce
+      if (node.x < 0 || node.x > canvas.width) node.vx *= -1
+      if (node.y < 0 || node.y > canvas.height) node.vy *= -1
+      
+      // Keep nodes within bounds
+      node.x = Math.max(0, Math.min(canvas.width, node.x))
+      node.y = Math.max(0, Math.min(canvas.height, node.y))
+      
+      // Update position
+      node.x += node.vx
+      node.y += node.vy
+      
+      // Mouse interaction - nodes are attracted/repelled by mouse
+      if (isMouseInHero) {
+        const dx = mouseX - node.x
+        const dy = mouseY - node.y
+        const dist = Math.sqrt(dx * dx + dy * dy)
         
-        // Get twist offset and visibility for this cell
-        const twist = getTwistOffset(baseX + gridSize/2, baseY + gridSize/2)
+        if (dist < 200) {
+          const force = (200 - dist) / 200
+          const angle = Math.atan2(dy, dx)
+          node.vx += Math.cos(angle) * force * 0.02
+          node.vy += Math.sin(angle) * force * 0.02
+        }
+      }
+      
+      // Damping
+      node.vx *= 0.98
+      node.vy *= 0.98
+    })
+    
+    // Draw connections between nearby nodes
+    ctx.strokeStyle = 'rgba(59, 130, 246, 0.08)'
+    ctx.lineWidth = 0.8
+    
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const nodeA = nodes[i]
+        const nodeB = nodes[j]
+        const dist = distance(nodeA.x, nodeA.y, nodeB.x, nodeB.y)
         
-        // Only draw if mouse is in hero section and cell is visible
-        if (isMouseInHero && twist.visible) {
-          // Calculate opacity based on distance for smooth fade
-          const dx = mouseX - (baseX + gridSize/2)
-          const dy = mouseY - (baseY + gridSize/2)
-          const distance = Math.sqrt(dx * dx + dy * dy)
-          const maxDistance = 120
-          const opacity = Math.max(0, 1 - distance / maxDistance)
+        if (dist < maxConnectionDistance) {
+          // Calculate opacity based on distance
+          const opacity = 1 - (dist / maxConnectionDistance)
           
-          // Draw simple twisted rectangle for better performance
-          ctx.strokeStyle = `rgba(59, 130, 246, ${opacity * 0.5})`
-          ctx.beginPath()
-          ctx.moveTo(baseX + twist.x, baseY + twist.y)
-          ctx.lineTo(baseX + gridSize + twist.x, baseY + twist.y)
-          ctx.lineTo(baseX + gridSize + twist.x, baseY + gridSize + twist.y)
-          ctx.lineTo(baseX + twist.x, baseY + gridSize + twist.y)
-          ctx.closePath()
-          ctx.stroke()
-          
-          // Add subtle fill for some cells
-          if ((i + j) % 4 === 0) {
-            ctx.fillStyle = `rgba(59, 130, 246, ${opacity * 0.08})`
-            ctx.fill()
+          // Enhance connection if mouse is nearby
+          let connectionOpacity = opacity * 0.08
+          if (isMouseInHero) {
+            const mouseDistA = distance(mouseX, mouseY, nodeA.x, nodeA.y)
+            const mouseDistB = distance(mouseX, mouseY, nodeB.x, nodeB.y)
+            const minMouseDist = Math.min(mouseDistA, mouseDistB)
+            
+            if (minMouseDist < 150) {
+              const mouseInfluence = 1 - (minMouseDist / 150)
+              connectionOpacity = Math.max(connectionOpacity, opacity * 0.25 * mouseInfluence)
+            }
           }
-        }
-      }
-    }
-    
-    // Simplified connection lines for better performance
-    ctx.strokeStyle = 'rgba(59, 130, 246, 0.2)'
-    ctx.lineWidth = 1
-    
-    // Only draw main connection lines
-    for (let i = 0; i <= cols; i++) {
-      const x = i * gridSize
-      ctx.beginPath()
-      ctx.moveTo(x, 0)
-      ctx.lineTo(x, canvas.height)
-      ctx.stroke()
-    }
-    
-    for (let i = 0; i <= rows; i++) {
-      const y = i * gridSize
-      ctx.beginPath()
-      ctx.moveTo(0, y)
-      ctx.lineTo(canvas.width, y)
-      ctx.stroke()
-    }
-    
-    // Draw grid points only in visible area
-    for (let i = 0; i <= cols; i++) {
-      for (let j = 0; j <= rows; j++) {
-        const x = i * gridSize
-        const y = j * gridSize
-        const twist = getTwistOffset(x, y)
-        
-        if (isMouseInHero && twist.visible) {
-          // Calculate opacity based on distance for smooth fade
-          const dx = mouseX - x
-          const dy = mouseY - y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-          const maxDistance = 120
-          const opacity = Math.max(0, 1 - distance / maxDistance)
           
-          ctx.fillStyle = `rgba(59, 130, 246, ${opacity * 0.6})`
+          ctx.strokeStyle = `rgba(59, 130, 246, ${connectionOpacity})`
           ctx.beginPath()
-          ctx.arc(x + twist.x, y + twist.y, 2.5, 0, Math.PI * 2)
-          ctx.fill()
+          ctx.moveTo(nodeA.x, nodeA.y)
+          ctx.lineTo(nodeB.x, nodeB.y)
+          ctx.stroke()
         }
       }
     }
+    
+    // Draw nodes
+    nodes.forEach(node => {
+      const dist = isMouseInHero ? distance(mouseX, mouseY, node.x, node.y) : Infinity
+      const maxInfluenceDist = 100
+      
+      let nodeRadius = node.baseRadius
+      let nodeOpacity = 0.5
+      
+      if (dist < maxInfluenceDist) {
+        const influence = 1 - (dist / maxInfluenceDist)
+        nodeRadius = node.baseRadius + influence * 3.5
+        nodeOpacity = 0.5 + influence * 0.5
+      }
+      
+      // Draw glow effect
+      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, nodeRadius * 3)
+      gradient.addColorStop(0, `rgba(59, 130, 246, ${nodeOpacity})`)
+      gradient.addColorStop(0.5, `rgba(59, 130, 246, ${nodeOpacity * 0.3})`)
+      gradient.addColorStop(1, 'rgba(59, 130, 246, 0)')
+      
+      ctx.fillStyle = gradient
+      ctx.beginPath()
+      ctx.arc(node.x, node.y, nodeRadius * 3, 0, Math.PI * 2)
+      ctx.fill()
+      
+      // Draw node core
+      ctx.fillStyle = `rgba(59, 130, 246, ${nodeOpacity})`
+      ctx.beginPath()
+      ctx.arc(node.x, node.y, nodeRadius, 0, Math.PI * 2)
+      ctx.fill()
+    })
   }
   
   // Animation loop
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    
-    // Update time for animation
-    time += 1
-    
-    // Draw twisted grid
-    drawGrid()
-    
+    drawNeuronNetwork()
     requestAnimationFrame(animate)
   }
   
