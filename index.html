@@ -1095,19 +1095,564 @@
 
             <!-- Copyright Stripe -->
             <div class="border-t border-gray-800 pt-8">
-                <div class="text-center text-gray-400 text-sm">
-                    <span x-show="language === 'he'">© 2025 בינה לכל. כל הזכויות שמורות.</span>
-                    <span x-show="language === 'en'">© 2025 Bina4All. All rights reserved.</span>
+                <div class="text-center text-gray-400 text-sm space-y-2">
+                    <div>
+                        <span x-show="language === 'he'">© 2025 בינה לכל. כל הזכויות שמורות.</span>
+                        <span x-show="language === 'en'">© 2025 Bina4All. All rights reserved.</span>
+                    </div>
+                    <div class="flex justify-center gap-4 mt-4">
+                        <a href="?page=privacy" class="text-gray-400 hover:text-bina-yellow transition-colors text-xs">
+                            <span x-show="language === 'he'">מדיניות פרטיות</span>
+                            <span x-show="language === 'en'">Privacy Policy</span>
+                        </a>
+                        <span class="text-gray-600">|</span>
+                        <a href="?page=terms" class="text-gray-400 hover:text-bina-yellow transition-colors text-xs">
+                            <span x-show="language === 'he'">תנאי שימוש</span>
+                            <span x-show="language === 'en'">Terms of Use</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- Legal Documents Modal -->
+    <div id="legal-modal" 
+         x-data="{ 
+             open: false, 
+             page: '',
+             closeModal() {
+                 this.open = false;
+                 if(window.updateURL) window.updateURL();
+                 if(window.unlockBodyScroll) window.unlockBodyScroll();
+             }
+         }" 
+         x-show="open" 
+         @click.self="closeModal()"
+         x-effect="if(!open && window.unlockBodyScroll) window.unlockBodyScroll()"
+         class="fixed inset-0 z-50 items-center justify-center bg-black/70 backdrop-blur-sm"
+         :class="open ? 'flex' : 'hidden'"
+         x-cloak
+         style="display: none;">
+        <div class="relative bg-white rounded-lg shadow-2xl max-w-4xl w-full mx-4 max-h-[90vh] overflow-hidden flex flex-col" @click.stop>
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-6 border-b border-gray-200 bg-bina-deep-blue text-white">
+                <h2 class="text-2xl font-bold">
+                    <span x-show="language === 'he' && page === 'privacy'">מדיניות פרטיות</span>
+                    <span x-show="language === 'en' && page === 'privacy'">Privacy Policy</span>
+                    <span x-show="language === 'he' && page === 'terms'">תנאי שימוש</span>
+                    <span x-show="language === 'en' && page === 'terms'">Terms of Use</span>
+                </h2>
+                <button @click="closeModal()" class="text-white hover:text-gray-200 transition-colors">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Content -->
+            <div class="overflow-y-auto flex-1 p-6" id="modal-content" :dir="language === 'he' ? 'rtl' : 'ltr'">
+                <!-- Content will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <!-- Vercel Analytics -->
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+
+    <!-- Legal Documents Script -->
+    <script>
+        // Legal documents content
+        const legalContent = {
+            privacy: {
+                he: `
+                    <div class="space-y-6 text-gray-700">
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">1. מבוא</h3>
+                            <p class="mb-4">בינה לכל ("אנחנו", "שלנו") מכבדת את פרטיותכם ומחויבת להגן על המידע האישי שאתם מספקים לנו. מדיניות פרטיות זו מסבירה כיצד אנו אוספים, משתמשים, מגנים ומשתפים את המידע האישי שלכם בעת השימוש בשירותינו.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">2. המידע שאנו אוספים</h3>
+                            <p class="mb-2">אנו אוספים מידע אישי שאתם מספקים לנו ישירות, כולל:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li>שם מלא, כתובת אימייל, מספר טלפון ופרטי חברה</li>
+                                <li>מידע על העסק שלכם והצרכים שלכם</li>
+                                <li>נתונים טכניים הקשורים לשירותי אוטומציה, CRM, פיתוח אתרים ושיווק דיגיטלי</li>
+                                <li>מידע על השימוש שלכם באתרים ובמערכות שאנו מפתחים</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">3. כיצד אנו משתמשים במידע</h3>
+                            <p class="mb-2">אנו משתמשים במידע האישי שלכם למטרות הבאות:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li>לספק ולשפר את השירותים שלנו (אוטומציה עסקית, הקמת מערכות CRM, פיתוח אתרים ושיווק דיגיטלי)</li>
+                                <li>לתקשר איתכם לגבי השירותים והפרויקטים שלנו</li>
+                                <li>לבצע קמפיינים שיווקיים ופרסומיים (כולל אימייל שיווקי, פרסום ברשתות חברתיות וקמפיינים דיגיטליים)</li>
+                                <li>לשפר את חוויית המשתמש ולנתח את השימוש בשירותינו</li>
+                                <li>לענות על שאלות ולספק תמיכה טכנית</li>
+                                <li>לעמוד בדרישות משפטיות וחוקיות</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">4. שיתוף מידע</h3>
+                            <p class="mb-2">אנו עשויים לשתף את המידע האישי שלכם עם:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li>ספקי שירותים צד שלישי המסייעים לנו לספק את השירותים שלנו (כגון ספקי אירוח, כלי אוטומציה, פלטפורמות CRM)</li>
+                                <li>שותפים עסקיים לצורך ביצוע קמפיינים שיווקיים משותפים</li>
+                                <li>רשויות משפטיות במידה ונדרש על פי חוק</li>
+                            </ul>
+                            <p class="mb-4">אנו לא מוכרים את המידע האישי שלכם לצדדים שלישיים למטרות מסחריות.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">5. קמפיינים שיווקיים</h3>
+                            <p class="mb-4">אנו משתמשים במידע שאתם מספקים לנו לביצוע קמפיינים שיווקיים, כולל שליחת הודעות פרסומיות, הצעות שירותים חדשים, עדכונים על מוצרים ושירותים, וניתוח התנהגות משתמשים לשיפור קמפיינים עתידיים. תוכלו לבחור שלא לקבל הודעות שיווקיות בכל עת על ידי פנייה אלינו.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">6. אבטחת מידע</h3>
+                            <p class="mb-4">אנו נוקטים אמצעי אבטחה טכניים וארגוניים מתאימים להגנה על המידע האישי שלכם מפני גישה לא מורשית, שימוש לרעה, אובדן או הרס. עם זאת, אין שיטת אבטחה מושלמת, ואנו לא יכולים להבטיח אבטחה מוחלטת.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">7. זכויותיכם</h3>
+                            <p class="mb-2">לפי חוק הגנת הפרטיות, יש לכם זכויות הבאות:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li>זכות גישה למידע האישי שלכם</li>
+                                <li>זכות לתקן מידע שגוי או לא מעודכן</li>
+                                <li>זכות למחוק מידע אישי (בכפוף למגבלות משפטיות)</li>
+                                <li>זכות להתנגד לעיבוד מידע אישי למטרות שיווקיות</li>
+                                <li>זכות להסיר הסכמה בכל עת</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">8. עוגיות וטכנולוגיות מעקב</h3>
+                            <p class="mb-4">אנו משתמשים בעוגיות וטכנולוגיות מעקב דומות לשיפור חוויית המשתמש, לנתח שימוש באתר ולבצע קמפיינים שיווקיים. תוכלו להגדיר את הדפדפן שלכם לדחות עוגיות, אך זה עלול להשפיע על תפקוד האתר.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">9. שינויים במדיניות</h3>
+                            <p class="mb-4">אנו עשויים לעדכן את מדיניות הפרטיות מעת לעת. שינויים משמעותיים יפורסמו באתר זה, ואנו נשלח לכם הודעה אם נדרש.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">10. יצירת קשר</h3>
+                            <p class="mb-4">אם יש לכם שאלות או בקשות לגבי מדיניות הפרטיות שלנו, אנא צרו קשר:</p>
+                            <p class="mb-2"><strong>אימייל:</strong> info@bina4all.com</p>
+                            <p class="mb-2"><strong>טלפון:</strong> +972 55-277-8983</p>
+                            <p><strong>כתובת:</strong> תל אביב, ישראל</p>
+                        </section>
+
+                        <p class="text-sm text-gray-500 mt-6">עודכן לאחרונה: ינואר 2025</p>
+                    </div>
+                `,
+                en: `
+                    <div class="space-y-6 text-gray-700">
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">1. Introduction</h3>
+                            <p class="mb-4">Bina4All ("we", "our", "us") respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how we collect, use, protect, and share your personal information when you use our services.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">2. Information We Collect</h3>
+                            <p class="mb-2">We collect personal information that you provide to us directly, including:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li>Full name, email address, phone number, and company details</li>
+                                <li>Information about your business and needs</li>
+                                <li>Technical data related to automation services, CRM systems, web development, and digital marketing</li>
+                                <li>Information about your use of websites and systems we develop</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">3. How We Use Your Information</h3>
+                            <p class="mb-2">We use your personal information for the following purposes:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li>To provide and improve our services (business automation, CRM setup, web development, and digital marketing)</li>
+                                <li>To communicate with you about our services and projects</li>
+                                <li>To conduct marketing and advertising campaigns (including email marketing, social media advertising, and digital campaigns)</li>
+                                <li>To improve user experience and analyze usage of our services</li>
+                                <li>To respond to inquiries and provide technical support</li>
+                                <li>To comply with legal and regulatory requirements</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">4. Information Sharing</h3>
+                            <p class="mb-2">We may share your personal information with:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li>Third-party service providers who help us deliver our services (such as hosting providers, automation tools, CRM platforms)</li>
+                                <li>Business partners for joint marketing campaigns</li>
+                                <li>Legal authorities when required by law</li>
+                            </ul>
+                            <p class="mb-4">We do not sell your personal information to third parties for commercial purposes.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">5. Marketing Campaigns</h3>
+                            <p class="mb-4">We use the information you provide to conduct marketing campaigns, including sending promotional messages, offers for new services, updates on products and services, and analyzing user behavior to improve future campaigns. You can opt-out of receiving marketing communications at any time by contacting us.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">6. Data Security</h3>
+                            <p class="mb-4">We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, misuse, loss, or destruction. However, no security method is perfect, and we cannot guarantee absolute security.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">7. Your Rights</h3>
+                            <p class="mb-2">Under privacy protection laws, you have the following rights:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li>Right to access your personal information</li>
+                                <li>Right to correct inaccurate or outdated information</li>
+                                <li>Right to delete personal information (subject to legal limitations)</li>
+                                <li>Right to object to processing of personal information for marketing purposes</li>
+                                <li>Right to withdraw consent at any time</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">8. Cookies and Tracking Technologies</h3>
+                            <p class="mb-4">We use cookies and similar tracking technologies to improve user experience, analyze website usage, and conduct marketing campaigns. You can set your browser to reject cookies, but this may affect website functionality.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">9. Policy Changes</h3>
+                            <p class="mb-4">We may update this Privacy Policy from time to time. Significant changes will be posted on this website, and we will notify you if required.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">10. Contact Us</h3>
+                            <p class="mb-4">If you have questions or requests regarding our Privacy Policy, please contact us:</p>
+                            <p class="mb-2"><strong>Email:</strong> info@bina4all.com</p>
+                            <p class="mb-2"><strong>Phone:</strong> +972 55-277-8983</p>
+                            <p><strong>Address:</strong> Tel Aviv, Israel</p>
+                        </section>
+
+                        <p class="text-sm text-gray-500 mt-6">Last updated: January 2025</p>
+                    </div>
+                `
+            },
+            terms: {
+                he: `
+                    <div class="space-y-6 text-gray-700">
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">1. הסכמה לתנאים</h3>
+                            <p class="mb-4">בגישה לשירותי בינה לכל ("השירותים") ובשימוש בהם, אתם מסכימים להיות כפופים לתנאי שימוש אלה. אם אינכם מסכימים לתנאים אלה, אנא אל תשתמשו בשירותינו.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">2. תיאור השירותים</h3>
+                            <p class="mb-2">בינה לכל מספקת שירותים בתחומים הבאים:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li><strong>אוטומציה עסקית:</strong> תכנון, פיתוח והטמעה של פתרונות אוטומציה לזרימת עבודה, חיסכון זמן ושיפור יעילות</li>
+                                <li><strong>הקמת מערכות CRM:</strong> תכנון, הקמה, התאמה אישית והטמעה של מערכות ניהול לקוחות</li>
+                                <li><strong>פיתוח אתרים:</strong> פיתוח, עיצוב ותחזוקה של אתרי אינטרנט וחנויות מקוונות</li>
+                                <li><strong>שיווק דיגיטלי:</strong> תכנון וביצוע קמפיינים שיווקיים דיגיטליים, ניהול מדיה חברתית וקידום אתרים</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">3. שימוש מותר</h3>
+                            <p class="mb-2">אתם רשאים להשתמש בשירותינו רק למטרות חוקיות ובהתאם לתנאים אלה. אסור לכם:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li>להשתמש בשירותינו למטרות בלתי חוקיות או לא מורשות</li>
+                                <li>להפר זכויות קניין רוחני של אחרים</li>
+                                <li>להעביר וירוסים, תוכנות זדוניות או קוד מזיק</li>
+                                <li>לנסות לגשת ללא הרשאה למערכות או למידע של אחרים</li>
+                                <li>להפר כל חוק או תקנה רלוונטית</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">4. קניין רוחני</h3>
+                            <p class="mb-4">כל הזכויות בקניין רוחני הקשורות לשירותינו, כולל אך לא רק: קוד, עיצובים, לוגואים, טקסטים ותוכן אחר, שייכים לבינה לכל או לבעליהם החוקיים. אין להעתיק, לשכפל או להשתמש בתוכן ללא הרשאה מפורשת בכתב.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">5. אחריות הלקוח</h3>
+                            <p class="mb-2">כשירות, אתם מתחייבים:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li>לספק מידע מדויק ומעודכן</li>
+                                <li>לשמור על סודיות של פרטי גישה למערכות שאנו מפתחים</li>
+                                <li>להודיע לנו מיד על כל שימוש לא מורשה או בעיות אבטחה</li>
+                                <li>לשלם את כל התשלומים המגיעים לנו במועד</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">6. הגבלת אחריות</h3>
+                            <p class="mb-4">השירותים מסופקים "כפי שהם" ללא כל אחריות מפורשת או משתמעת. בינה לכל לא תהיה אחראית לכל נזק ישיר, עקיף, מקרי או תוצאתי הנובע משימוש או אי יכולת להשתמש בשירותינו, כולל אך לא רק אובדן רווחים, נתונים או הזדמנויות עסקיות.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">7. תשלומים וביטולים</h3>
+                            <p class="mb-2">תנאי התשלום יוסכמו מראש בכתב. ביטול פרויקטים:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 mr-4">
+                                <li>ביטול לפני תחילת העבודה: ללא חיוב</li>
+                                <li>ביטול במהלך העבודה: חיוב יחסי לפי העבודה שבוצעה</li>
+                                <li>ביטול לאחר השלמת הפרויקט: אין החזר כספי</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">8. סודיות</h3>
+                            <p class="mb-4">אנו מתחייבים לשמור על סודיות המידע העסקי והטכני שאתם מספקים לנו במסגרת הפרויקטים. מידע זה לא יועבר לצדדים שלישיים ללא הסכמתכם המפורשת, למעט מקרים בהם נדרש על פי חוק.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">9. שינויים בתנאים</h3>
+                            <p class="mb-4">אנו שומרים לעצמנו את הזכות לעדכן את תנאי השימוש מעת לעת. שינויים משמעותיים יפורסמו באתר זה. המשך השימוש בשירותינו לאחר פרסום שינויים מהווה הסכמה לתנאים המעודכנים.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">10. בוררות ופיצויים</h3>
+                            <p class="mb-4">כל מחלוקת הנובעת מתנאי שימוש אלה תיפתר באמצעות בוררות בישראל לפי חוק הבוררות הישראלי. אתם מסכימים לפצות ולהגן על בינה לכל מפני כל תביעות, נזקים, הוצאות ואחריות הנובעות מהפרת תנאים אלה או שימוש לא מורשה בשירותינו.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">11. יצירת קשר</h3>
+                            <p class="mb-4">לשאלות או תלונות בנוגע לתנאי השימוש, אנא צרו קשר:</p>
+                            <p class="mb-2"><strong>אימייל:</strong> info@bina4all.com</p>
+                            <p class="mb-2"><strong>טלפון:</strong> +972 55-277-8983</p>
+                            <p><strong>כתובת:</strong> תל אביב, ישראל</p>
+                        </section>
+
+                        <p class="text-sm text-gray-500 mt-6">עודכן לאחרונה: ינואר 2025</p>
+                    </div>
+                `,
+                en: `
+                    <div class="space-y-6 text-gray-700">
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">1. Agreement to Terms</h3>
+                            <p class="mb-4">By accessing and using Bina4All services ("Services"), you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our services.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">2. Description of Services</h3>
+                            <p class="mb-2">Bina4All provides services in the following areas:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li><strong>Business Automation:</strong> Planning, development, and implementation of automation solutions for workflow, time savings, and efficiency improvement</li>
+                                <li><strong>CRM System Setup:</strong> Planning, setup, customization, and implementation of customer management systems</li>
+                                <li><strong>Web Development:</strong> Development, design, and maintenance of websites and online stores</li>
+                                <li><strong>Digital Marketing:</strong> Planning and execution of digital marketing campaigns, social media management, and website promotion</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">3. Permitted Use</h3>
+                            <p class="mb-2">You may use our services only for lawful purposes and in accordance with these terms. You must not:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li>Use our services for illegal or unauthorized purposes</li>
+                                <li>Infringe on the intellectual property rights of others</li>
+                                <li>Transmit viruses, malicious software, or harmful code</li>
+                                <li>Attempt to access without authorization systems or information of others</li>
+                                <li>Violate any applicable law or regulation</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">4. Intellectual Property</h3>
+                            <p class="mb-4">All intellectual property rights related to our services, including but not limited to: code, designs, logos, texts, and other content, belong to Bina4All or their lawful owners. You may not copy, reproduce, or use content without explicit written permission.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">5. Client Responsibilities</h3>
+                            <p class="mb-2">As a client, you commit to:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li>Provide accurate and up-to-date information</li>
+                                <li>Maintain confidentiality of access credentials for systems we develop</li>
+                                <li>Notify us immediately of any unauthorized use or security issues</li>
+                                <li>Pay all amounts due to us on time</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">6. Limitation of Liability</h3>
+                            <p class="mb-4">Services are provided "as is" without any express or implied warranties. Bina4All shall not be liable for any direct, indirect, incidental, or consequential damages arising from use or inability to use our services, including but not limited to loss of profits, data, or business opportunities.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">7. Payments and Cancellations</h3>
+                            <p class="mb-2">Payment terms will be agreed upon in advance in writing. Project cancellations:</p>
+                            <ul class="list-disc list-inside mb-4 space-y-1 ml-4">
+                                <li>Cancellation before work begins: No charge</li>
+                                <li>Cancellation during work: Proportional charge for work completed</li>
+                                <li>Cancellation after project completion: No refund</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">8. Confidentiality</h3>
+                            <p class="mb-4">We commit to maintaining confidentiality of business and technical information you provide us within the framework of projects. This information will not be shared with third parties without your explicit consent, except when required by law.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">9. Changes to Terms</h3>
+                            <p class="mb-4">We reserve the right to update these Terms of Use from time to time. Significant changes will be posted on this website. Continued use of our services after publication of changes constitutes agreement to the updated terms.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">10. Arbitration and Indemnification</h3>
+                            <p class="mb-4">Any dispute arising from these Terms of Use will be resolved through arbitration in Israel according to Israeli arbitration law. You agree to indemnify and hold Bina4All harmless from any claims, damages, expenses, and liabilities arising from violation of these terms or unauthorized use of our services.</p>
+                        </section>
+
+                        <section>
+                            <h3 class="text-xl font-bold text-bina-deep-blue mb-3">11. Contact Us</h3>
+                            <p class="mb-4">For questions or complaints regarding Terms of Use, please contact:</p>
+                            <p class="mb-2"><strong>Email:</strong> info@bina4all.com</p>
+                            <p class="mb-2"><strong>Phone:</strong> +972 55-277-8983</p>
+                            <p><strong>Address:</strong> Tel Aviv, Israel</p>
+                        </section>
+
+                        <p class="text-sm text-gray-500 mt-6">Last updated: January 2025</p>
+                    </div>
+                `
+            }
+        };
+
+        // Initialize legal modal
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('legal-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            // Track if modal is open to prevent multiple unlocks
+            let isModalOpen = false;
+            
+            // Get language from Alpine.js
+            function getLanguage() {
+                try {
+                    const body = document.body;
+                    if (body.__x && body.__x.$data && body.__x.$data.language) {
+                        return body.__x.$data.language;
+                    }
+                } catch(e) {}
+                // Fallback: check if page has RTL
+                return document.documentElement.dir === 'rtl' ? 'he' : 'en';
+            }
+            
+            function updateURL(pageType) {
+                const newUrl = new URL(window.location);
+                if (pageType) {
+                    newUrl.searchParams.set('page', pageType);
+                } else {
+                    newUrl.searchParams.delete('page');
+                }
+                window.history.pushState({}, '', newUrl);
+            }
+            
+            function lockBodyScroll() {
+                if (isModalOpen) return; // Already locked
+                
+                isModalOpen = true;
+                
+                // Simple approach: just hide overflow
+                // This is less intrusive and doesn't cause scroll jumps
+                document.body.style.overflow = 'hidden';
+                document.documentElement.style.overflow = 'hidden';
+            }
+            
+            function unlockBodyScroll() {
+                if (!isModalOpen) return; // Not locked
+                
+                isModalOpen = false;
+                
+                // Simply remove the overflow restrictions
+                // No need to restore scroll position since we didn't change it
+                document.body.style.removeProperty('overflow');
+                document.documentElement.style.removeProperty('overflow');
+            }
+            
+            function openModal(pageType) {
+                if (!legalContent[pageType]) return;
+                
+                const lang = getLanguage();
+                const content = legalContent[pageType][lang] || legalContent[pageType]['en'];
+                
+                modalContent.innerHTML = content;
+                
+                // Get Alpine data
+                let alpineData;
+                try {
+                    alpineData = modal.__x || (modal._x_dataStack && modal._x_dataStack[0]);
+                } catch(e) {}
+                
+                if (alpineData) {
+                    alpineData.open = true;
+                    alpineData.page = pageType;
+                } else {
+                    // Fallback: direct DOM manipulation
+                    modal.style.display = 'flex';
+                    modal.setAttribute('data-page', pageType);
+                }
+                
+                updateURL(pageType);
+                lockBodyScroll();
+            }
+            
+            function closeModal() {
+                let alpineData;
+                try {
+                    alpineData = modal.__x || (modal._x_dataStack && modal._x_dataStack[0]);
+                } catch(e) {}
+                
+                if (alpineData) {
+                    alpineData.open = false;
+                    alpineData.page = '';
+                } else {
+                    modal.style.display = 'none';
+                    modal.removeAttribute('data-page');
+                }
+                
+                updateURL();
+                unlockBodyScroll();
+            }
+            
+            // Make functions globally accessible
+            window.openLegalModal = openModal;
+            window.closeLegalModal = closeModal;
+            window.unlockBodyScroll = unlockBodyScroll;
+            window.updateURL = updateURL;
+            
+            // Handle URL parameter on page load
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page');
+            if (page && (page === 'privacy' || page === 'terms')) {
+                // Wait for Alpine to be ready
+                setTimeout(() => openModal(page), 200);
+            }
+            
+            // Handle back button
+            window.addEventListener('popstate', function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const page = urlParams.get('page');
+                if (!page || (page !== 'privacy' && page !== 'terms')) {
+                    closeModal();
+                } else {
+                    openModal(page);
+                }
+            });
+            
+            // Handle footer links
+            document.querySelectorAll('a[href*="page="]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const url = new URL(this.href, window.location.origin);
+                    const page = url.searchParams.get('page');
+                    if (page && (page === 'privacy' || page === 'terms')) {
+                        openModal(page);
+                    }
+                });
+            });
+            
+            // Expose updateURL globally for Alpine
+            window.updateURL = updateURL;
+        });
+    </script>
 
 </body>
 </html> 
