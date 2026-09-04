@@ -403,6 +403,40 @@ function initProjectsSection() {
   }
 }
 
+function initContactForm() {
+  const form = document.querySelector('[data-contact-form]')
+  if (!form) return
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault()
+
+    const submitButton = form.querySelector('button[type="submit"]')
+    const loadingButton = form.querySelector('button.loading')
+    const successMessage = form.closest('.ml-subscribe-form')?.querySelector('.row-success')
+
+    submitButton.disabled = true
+    submitButton.style.display = 'none'
+    loadingButton.style.display = 'inline-flex'
+
+    try {
+      await fetch(form.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(form)),
+        mode: 'no-cors'
+      })
+
+      form.closest('.row-form').style.display = 'none'
+      successMessage.style.display = 'block'
+    } catch (error) {
+      submitButton.disabled = false
+      submitButton.style.display = ''
+      loadingButton.style.display = 'none'
+      console.error('Contact form submission failed:', error)
+    }
+  })
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   initProjectsSection();
+  initContactForm();
 });
