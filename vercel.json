@@ -2,7 +2,11 @@
   "rewrites": [
     {
       "source": "/projects/baitplus/chatbot-demo",
-      "destination": "https://beit-plus-chatbot.vercel.app/projects/baitplus/chatbot-demo/"
+      "destination": "https://beit-plus-chatbot.vercel.app/projects/baitplus/chatbot-demo/index.html"
+    },
+    {
+      "source": "/projects/baitplus/chatbot-demo/",
+      "destination": "https://beit-plus-chatbot.vercel.app/projects/baitplus/chatbot-demo/index.html"
     },
     {
       "source": "/projects/baitplus/chatbot-demo/:path*",
